@@ -1,32 +1,57 @@
 package Repository;
 
+import Model.Client;
+import Model.Table;
 import Model.Waiter;
 
 import java.util.List;
 
 public class WaiterRepo implements WaiterRepoInterface{
-    @Override
-    public void add(Waiter waiter) {
+    List<Waiter> waiterList;
 
+    @Override
+    public boolean add(Waiter waiter) {
+        for(Waiter c : waiterList)
+            if(c.equals(waiter))
+                return false;
+        waiterList.add(waiter);
+        return true;
     }
 
     @Override
-    public void delete(String s) {
-
+    public boolean delete(Integer ID) {
+        for(Waiter c : waiterList)
+            if(c.getWaiterID().equals(ID)){
+                waiterList.remove(c);
+                return true;
+            }
+        return false;
     }
 
     @Override
-    public void update(String s, Waiter waiter) {
-
+    public boolean update(Integer ID, Waiter waiter) {
+        for(Waiter c : waiterList){
+            if(c.getWaiterID().equals(ID)){
+                c=waiter;
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public Waiter findbyId(String s) {
+    public Waiter findbyId(Integer ID) {
+        for(Waiter c : waiterList){
+            if(c.getWaiterID().equals(ID)){
+                return c;
+            }
+        }
         return null;
     }
+
 
     @Override
     public List<Waiter> getAllWaiters() {
-        return null;
+        return waiterList;
     }
 }

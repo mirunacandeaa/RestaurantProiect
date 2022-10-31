@@ -1,32 +1,55 @@
 package Repository;
 
+import Model.Client;
 import Model.Table;
 
 import java.util.List;
 
 public class TableRepo implements TableRepoInterface{
-    @Override
-    public void add(Object o) {
+    private List<Table> tableList;
 
+    @Override
+    public boolean add(Table table) {
+            for(Table c : tableList)
+                if(c.equals(table))
+                    return false;
+            tableList.add(table);
+            return true;
     }
 
     @Override
-    public void delete(Object o) {
-
+    public boolean delete(Integer ID) {
+        for(Table c : tableList){
+            if(c.getTableId().equals(ID)){
+                tableList.remove(c);
+                return true;
+            }}
+        return false;
     }
 
     @Override
-    public void update(Object o, Object o2) {
-
+    public boolean update(Integer ID, Table table) {
+        for(Table c : tableList){
+            if(c.getTableId().equals(ID)){
+                c=table;
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public Object findbyId(Object o) {
+    public Table findbyId(Integer ID) {
+        for(Table c : tableList){
+            if(c.getTableId().equals(ID)){
+                return c;
+            }
+        }
         return null;
     }
 
     @Override
     public List<Table> getAllTables() {
-        return null;
+        return tableList;
     }
 }
