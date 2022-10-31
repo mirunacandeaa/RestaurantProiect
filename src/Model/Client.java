@@ -2,7 +2,20 @@ package Model;
 
 import java.util.List;
 
-public class Client {
+public class Client extends Person{
+
+    Integer clientID;
+    Integer phone;
+    List<Reservation> reservationList;
+
+    public Client(String firstName, String lastName, Integer clientID, Integer phone, List<Reservation> reservationList) {
+        super(firstName, lastName);
+        this.clientID = clientID;
+        this.phone = phone;
+        this.reservationList = reservationList;
+    }
+
+
     public Integer getClientID() {
         return clientID;
     }
@@ -26,8 +39,4 @@ public class Client {
     public void setReservationList(List<Reservation> reservationList) {
         this.reservationList = reservationList;
     }
-
-    Integer clientID;
-    Integer phone;
-    List<Reservation> reservationList;
 }
