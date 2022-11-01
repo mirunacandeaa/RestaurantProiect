@@ -48,8 +48,10 @@ public class TableRepo implements ITableRepository {
         return null;
     }
 
+
+
     @Override
-    public List<Table> getAllTables() {
+    public List<Table> getAll() {
         return tableList;
     }
 }

@@ -50,7 +50,7 @@ public class WaiterRepo implements IWaiterRepository {
 
 
     @Override
-    public List<Waiter> getAllWaiters() {
+    public List<Waiter> getAll() {
         return waiterList;
     }
 }

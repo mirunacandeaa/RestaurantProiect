@@ -51,9 +51,8 @@ public class ReservationRepo implements IReservationRepository {
         return null;
     }
 
-
     @Override
-    public List<Reservation> getAllReservations() {
+    public List<Reservation> getAll() {
         return reservationList;
     }
 }

@@ -8,10 +8,6 @@ import java.util.List;
 public class ClientRepo implements IClientRepository {
     private List<Client> clientList;
 
-    @Override
-    public List<Client> getAllClients() {
-        return clientList;
-    }
 
     @Override
     public boolean add(Client client) {
@@ -51,6 +47,11 @@ public class ClientRepo implements IClientRepository {
     }
         }
         return null;
+    }
+
+    @Override
+    public List<Client> getAll() {
+        return clientList;
     }
 }
 
