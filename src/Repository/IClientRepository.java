@@ -4,6 +4,6 @@ import Model.Client;
 
 import java.util.List;
 
-public interface ClientRepoInterface extends ICrudRepository<Integer, Client> {
+public interface IClientRepository extends ICrudRepository<Integer, Client> {
     List<Client>getAllClients();
 }

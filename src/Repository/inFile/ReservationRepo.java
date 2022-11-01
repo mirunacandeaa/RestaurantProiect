@@ -1,12 +1,11 @@
-package Repository;
+package Repository.inFile;
 
-import Model.Client;
 import Model.Reservation;
-import Model.Table;
+import Repository.IReservationRepository;
 
 import java.util.List;
 
-public class ReservationRepo implements ReservationRepoInterface{
+public class ReservationRepo implements IReservationRepository {
 
     public List<Reservation> reservationList;
 

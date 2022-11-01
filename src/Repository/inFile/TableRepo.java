@@ -1,11 +1,11 @@
-package Repository;
+package Repository.inFile;
 
-import Model.Client;
 import Model.Table;
+import Repository.ITableRepository;
 
 import java.util.List;
 
-public class TableRepo implements TableRepoInterface{
+public class TableRepo implements ITableRepository {
     private List<Table> tableList;
 
     @Override

@@ -1,12 +1,11 @@
-package Repository;
+package Repository.inFile;
 
-import Model.Client;
-import Model.Table;
 import Model.Waiter;
+import Repository.IWaiterRepository;
 
 import java.util.List;
 
-public class WaiterRepo implements WaiterRepoInterface{
+public class WaiterRepo implements IWaiterRepository {
     List<Waiter> waiterList;
 
     @Override

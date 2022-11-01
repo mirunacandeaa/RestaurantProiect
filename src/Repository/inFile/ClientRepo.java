@@ -1,10 +1,11 @@
-package Repository;
+package Repository.inFile;
 
 import Model.Client;
+import Repository.IClientRepository;
 
 import java.util.List;
 
-public class ClientRepo implements ClientRepoInterface{
+public class ClientRepo implements IClientRepository {
     private List<Client> clientList;
 
     @Override
