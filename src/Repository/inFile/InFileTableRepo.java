@@ -5,7 +5,7 @@ import Repository.ITableRepository;
 
 import java.util.List;
 
-public class TableRepo implements ITableRepository {
+public class InFileTableRepo implements ITableRepository {
     private List<Table> tableList;
 
     @Override

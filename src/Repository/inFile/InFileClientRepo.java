@@ -5,7 +5,7 @@ import Repository.IClientRepository;
 
 import java.util.List;
 
-public class ClientRepo implements IClientRepository {
+public class InFileClientRepo implements IClientRepository {
     private List<Client> clientList;
 
 

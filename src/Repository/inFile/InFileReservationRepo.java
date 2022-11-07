@@ -5,7 +5,7 @@ import Repository.IReservationRepository;
 
 import java.util.List;
 
-public class ReservationRepo implements IReservationRepository {
+public class InFileReservationRepo implements IReservationRepository {
 
     public List<Reservation> reservationList;
 

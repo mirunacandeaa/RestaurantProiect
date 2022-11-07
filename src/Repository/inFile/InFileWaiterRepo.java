@@ -5,7 +5,7 @@ import Repository.IWaiterRepository;
 
 import java.util.List;
 
-public class WaiterRepo implements IWaiterRepository {
+public class InFileWaiterRepo implements IWaiterRepository {
     List<Waiter> waiterList;
 
     @Override
