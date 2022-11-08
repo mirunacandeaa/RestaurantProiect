@@ -8,11 +8,16 @@ public class Reservation {
     private Client client;
     private Date date;
     private Table table;
-    public Reservation(Integer reservationID, Client client, Date date, Table table) {
+
+    private Integer nrPersons;
+
+
+    public Reservation(Integer reservationID, Client client, Date date, Table table, Integer nrPersons) {
         this.reservationID = reservationID;
         this.client = client;
         this.date = date;
         this.table = table;
+        this.nrPersons=nrPersons;
     }
 
 
@@ -48,5 +53,14 @@ public class Reservation {
     public void setTable(Table table) {
         this.table = table;
     }
+
+    public Integer getNrPersons() {
+        return nrPersons;
+    }
+
+    public void setNrPersons(Integer nrPersons) {
+        this.nrPersons = nrPersons;
+    }
+
 
 }
