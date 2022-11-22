@@ -15,14 +15,19 @@ public class View {
 
 
 
-    public void printavailableTables(){
+    public void printavailableTables(String date){
         System.out.println("Available Tables");
-        for(Table t : this.controller.availableTables("21-10-2022")){
+        if(this.controller.availableTables(date)==null)
+        {
+            System.out.println("No available tables");
+        }
+        for(Table t : this.controller.availableTables(date)){
             System.out.println("Table id: " + t.getTableId());
         }
     }
 
 
+    /*
 
     public void printnewReservation(){
         if(this.controller.makeNewReservation(, 4, 3)==null)
@@ -37,7 +42,7 @@ public class View {
         System.out.println("Table number" + );
     }
 
-
+*/
 
 }
 
