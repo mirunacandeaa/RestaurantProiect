@@ -8,22 +8,14 @@ public class Table {
     private Integer TableId;
     private Integer nrPersons;
     private List<Waiter> waiterList;
-    private TableAvalibility status;
 
-    public Table(Integer tableId, Integer nrPersons, List<Waiter> waiterList, TableAvalibility status) {
+
+    public Table(Integer tableId, Integer nrPersons, List<Waiter> waiterList) {
         TableId = tableId;
         this.nrPersons = nrPersons;
         this.waiterList = waiterList;
-        this.status=TableAvalibility.AVAILABLE;
     }
 
-    public TableAvalibility getStatus() {
-        return status;
-    }
-
-    public void setStatus(TableAvalibility status) {
-        this.status = status;
-    }
     public Integer getTableId() {
         return TableId;
     }

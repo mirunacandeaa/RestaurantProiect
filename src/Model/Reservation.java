@@ -6,13 +6,13 @@ public class Reservation {
 
     private Integer reservationID;
     private Client client;
-    private Date date;
+    private String date;
     private Table table;
 
     private Integer nrPersons;
 
 
-    public Reservation(Integer reservationID, Client client, Date date, Table table, Integer nrPersons) {
+    public Reservation(Integer reservationID, Client client, String date, Table table, Integer nrPersons) {
         this.reservationID = reservationID;
         this.client = client;
         this.date = date;
@@ -38,11 +38,11 @@ public class Reservation {
         this.client = client;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

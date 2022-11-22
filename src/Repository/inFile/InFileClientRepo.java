@@ -6,52 +6,41 @@ import Repository.IClientRepository;
 import java.util.List;
 
 public class InFileClientRepo implements IClientRepository {
-    private List<Client> clientList;
 
+
+    public List<Client>clientList;
 
     @Override
     public boolean add(Client client) {
-        for(Client c : clientList)
+        for(Client c: clientList)
+        {
             if(c.equals(client))
+            {
                 return false;
+            }
+        }
         clientList.add(client);
         return true;
     }
 
     @Override
-    public boolean delete(Integer ID) {
-        for(Client c : clientList)
-            if(c.getClientID().equals(ID)){
-                clientList.remove(c);
-                return true;
-        }
+    public boolean delete(Integer integer) {
+
         return false;
     }
 
     @Override
-    public boolean update(Integer ID, Client client) {
-        for(Client c : clientList){
-            if(c.getClientID().equals(ID)){
-                c=client;
-                return true;
-                 }
-            }
+    public boolean update(Integer integer, Client client) {
         return false;
-        }
+    }
 
     @Override
-    public Client findbyId(Integer ID) {
-        for(Client c : clientList){
-            if(c.getClientID().equals(ID)){
-                return c;
-    }
-        }
+    public Client findbyId(Integer integer) {
         return null;
     }
 
     @Override
     public List<Client> getAll() {
-        return clientList;
+        return null;
     }
 }
-

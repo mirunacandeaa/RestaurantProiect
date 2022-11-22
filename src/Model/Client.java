@@ -5,15 +5,16 @@ import java.util.List;
 public class Client extends Person{
 
     Integer clientID;
-    Integer phone;
+    String phone;
     List<Reservation> reservationList;
 
-    public Client(String firstName, String lastName, Integer clientID, Integer phone, List<Reservation> reservationList) {
+    public Client(String firstName, String lastName, Integer clientID, String phone, List<Reservation> reservationList) {
         super(firstName, lastName);
         this.clientID = clientID;
         this.phone = phone;
         this.reservationList = reservationList;
     }
+
 
 
     public Integer getClientID() {
@@ -24,11 +25,12 @@ public class Client extends Person{
         this.clientID = clientID;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

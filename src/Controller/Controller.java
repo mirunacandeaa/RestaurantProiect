@@ -8,6 +8,7 @@ import Repository.IClientRepository;
 import Repository.IReservationRepository;
 import Repository.ITableRepository;
 import Repository.IWaiterRepository;
+import View.View;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +21,47 @@ public class Controller {
     private IReservationRepository reservationRepository;
     private ITableRepository tableRepository;
 
+
+    public IClientRepository getClientRepository() {
+        return clientRepository;
+    }
+
+    public void setClientRepository(IClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
+
+    public IWaiterRepository getWaiterRepository() {
+        return waiterRepository;
+    }
+
+    public void setWaiterRepository(IWaiterRepository waiterRepository) {
+        this.waiterRepository = waiterRepository;
+    }
+
+    public IReservationRepository getReservationRepository() {
+        return reservationRepository;
+    }
+
+    public void setReservationRepository(IReservationRepository reservationRepository) {
+        this.reservationRepository = reservationRepository;
+    }
+
+    public ITableRepository getTableRepository() {
+        return tableRepository;
+    }
+
+    public void setTableRepository(ITableRepository tableRepository) {
+        this.tableRepository = tableRepository;
+    }
+
+
+    public List<Table> getAllTables()
+    {
+        return tableRepository.getAll();
+    }
+
+
+
     public Controller(IClientRepository clientRepository, IWaiterRepository waiterRepository, IReservationRepository reservationRepository, ITableRepository tableRepository)
     {
         this.clientRepository=clientRepository;
@@ -28,7 +70,7 @@ public class Controller {
         this.tableRepository=tableRepository;
     }
 
-    public Reservation makeNewReservation(Client client, Integer nrPersons, Date date)
+    public Reservation makeNewReservation(Client client, Integer nrPersons, String date)
     {
         Integer ID=4;
         //TODO VEZI DE ID SI SCRIE WARNINGU SI TEXTU GEN 'SUCCESFULLY RESERV.'
@@ -48,15 +90,17 @@ public class Controller {
 
         if(tableForRes==null)
         {
+
             return null;
-        }
+    }
 
         Reservation reservation=new Reservation(ID, client, date, tableForRes, nrPersons);
         this.reservationRepository.add(reservation);
         return reservation;
 
     }
-    public List<Table> availableTables(Date date)
+
+    public List<Table> availableTables(String date)
     {
         List<Table> avTables = new ArrayList<>();
         for(Reservation reservation: reservationRepository.getAll()) {
@@ -77,7 +121,6 @@ public class Controller {
     {
         return null;
     }
-
 
     public List<Table> tablesForWaiter(Waiter waiter)
     {
