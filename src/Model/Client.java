@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Client extends Person{
 
+
     Integer clientID;
     String phone;
     List<Reservation> reservationList;
@@ -40,5 +41,10 @@ public class Client extends Person{
 
     public void setReservationList(List<Reservation> reservationList) {
         this.reservationList = reservationList;
+    }
+
+    @Override
+    public String toString(){
+        return "ID: " + clientID + " Name: " + firstName + " " + lastName;
     }
 }

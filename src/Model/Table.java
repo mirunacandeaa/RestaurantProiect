@@ -9,6 +9,10 @@ public class Table {
     private Integer nrPersons;
     private List<Waiter> waiterList;
 
+    @Override
+    public String toString(){
+        return "TableId: " + getTableId();
+    }
 
     public Table(Integer tableId, Integer nrPersons, List<Waiter> waiterList) {
         TableId = tableId;

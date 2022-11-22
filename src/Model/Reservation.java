@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Reservation {
 
+    private static int counter = 0;
     private Integer reservationID;
     private Client client;
     private String date;
@@ -12,8 +13,8 @@ public class Reservation {
     private Integer nrPersons;
 
 
-    public Reservation(Integer reservationID, Client client, String date, Table table, Integer nrPersons) {
-        this.reservationID = reservationID;
+    public Reservation(Client client, String date, Table table, Integer nrPersons) {
+        this.reservationID = ++counter;
         this.client = client;
         this.date = date;
         this.table = table;

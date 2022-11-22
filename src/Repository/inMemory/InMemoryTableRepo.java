@@ -3,15 +3,19 @@ package Repository.inMemory;
 import Model.Table;
 import Repository.ITableRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryTableRepo implements ITableRepository {
-    private List<Table> tableList;
+    private List<Table> tableList = new ArrayList<>();
 
     public void populate(){
         Table table1 = new Table(1, 4, null);
         Table table2 = new Table(2, 2, null);
         Table table3 = new Table(3, 10, null);
+        tableList.add(table1);
+        tableList.add(table2);
+        tableList.add(table3);
     }
 
     @Override

@@ -3,11 +3,12 @@ package Repository.inMemory;
 import Model.Reservation;
 import Repository.IReservationRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryReservationRepo implements IReservationRepository {
 
-    public List<Reservation> reservationList;
+    public List<Reservation> reservationList = new ArrayList<>();
 
 
     @Override

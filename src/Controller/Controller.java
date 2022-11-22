@@ -70,11 +70,16 @@ public class Controller {
         this.tableRepository=tableRepository;
     }
 
+    public List<Client> getClients() {
+        return clientRepository.getAll();
+    }
+
+    public Client selectClient(int x){
+        List<Client> clientList = clientRepository.getAll();
+        return clientList.get(x);
+    }
     public Reservation makeNewReservation(Client client, Integer nrPersons, String date)
     {
-        Integer ID=4;
-        //TODO VEZI DE ID SI SCRIE WARNINGU SI TEXTU GEN 'SUCCESFULLY RESERV.'
-
         List<Table> freeTables = this.availableTables(date);
         Table tableForRes = null;
         for(Table t : freeTables){
@@ -94,7 +99,7 @@ public class Controller {
             return null;
     }
 
-        Reservation reservation=new Reservation(ID, client, date, tableForRes, nrPersons);
+        Reservation reservation=new Reservation(client, date, tableForRes, nrPersons);
         this.reservationRepository.add(reservation);
         return reservation;
 
@@ -113,6 +118,8 @@ public class Controller {
         {
             return avTables;
         }
+        if(reservationRepository.getAll().isEmpty())
+            return tableRepository.getAll();
         return null;
     }
 

@@ -4,10 +4,11 @@ import Model.Table;
 import Model.Waiter;
 import Repository.IWaiterRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryWaiterRepo implements IWaiterRepository {
-    List<Waiter> waiterList;
+    List<Waiter> waiterList = new ArrayList<>();
 
     public void populate(){
         Waiter waiter1 = new Waiter("Andrei", "Ivanovici", 1, null);
