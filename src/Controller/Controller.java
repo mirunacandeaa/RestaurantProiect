@@ -97,7 +97,7 @@ public class Controller {
         {
 
             return null;
-    }
+        }
 
         Reservation reservation=new Reservation(client, date, tableForRes, nrPersons);
         this.reservationRepository.add(reservation);
