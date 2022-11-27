@@ -70,6 +70,22 @@ public class View {
             }
     }
 
+    public void viewReservationsAtDate(){
+        System.out.println("Enter date: ");
+        try {
+            String date = br.readLine();
+            List<Reservation> res = controller.reservationAtDate(date);
+            if(res.isEmpty())
+                System.out.println("No reservations at " + date);
+            else
+                for(Reservation r : res){
+                    System.out.println(r.toString());
+                }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
 }

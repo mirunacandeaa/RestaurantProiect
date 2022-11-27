@@ -33,7 +33,7 @@ public class UX {
         System.out.println("Welcome to your restaurant app that manages everything. ");
         while(true)
         {
-            System.out.println("What would you like to do? \n 1.Confirm new Reservation  \n 2.See available Tables \n 3.See all Reservations" );
+            System.out.println("What would you like to do? \n 1.Confirm new Reservation  \n 2.See available Tables \n 3.See all Reservations \n 4.View reservations at date" );
             int num= scan.nextInt();
             if(num==1)
             {
@@ -54,6 +54,9 @@ public class UX {
             {
 
                 view.viewReservations();
+            }
+            if(num==4){
+                view.viewReservationsAtDate();
             }
 
             System.out.println("Do you want to continue? \n 1.Quit\n 2.Continue ");

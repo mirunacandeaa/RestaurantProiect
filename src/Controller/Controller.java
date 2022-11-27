@@ -107,19 +107,40 @@ public class Controller {
 
     public List<Table> availableTables(String date)
     {
-        List<Table> avTables = new ArrayList<>();
+        if(reservationRepository.getAll().isEmpty())
+            return tableRepository.getAll();
+
+        int ok=1;
+        List<Table> notavTables = new ArrayList<>();
         for(Reservation reservation: reservationRepository.getAll()) {
-            if (!reservation.getDate().equals(date))
+            if (reservation.getDate().equals(date))
             {
-                avTables.add(reservation.getTable());
+                notavTables.add(reservation.getTable());
             }
         }
+
+        List<Table> avTables=new ArrayList<>();
+        for(Table t: tableRepository.getAll())
+        {
+            ok=1;
+            for(Table a: notavTables)
+            {
+                if (t.equals(a)) {
+                    ok = 0;
+                    break;
+                }
+            }
+            if(ok==1) {
+                avTables.add(t);
+            }
+        }
+
         if(!avTables.isEmpty())
         {
             return avTables;
         }
-        if(reservationRepository.getAll().isEmpty())
-            return tableRepository.getAll();
+
+
         return null;
     }
 
@@ -137,9 +158,18 @@ public class Controller {
     {
         return null;
     }
-    public List<Reservation> reservationAtDate(Date date)
+    public List<Reservation> reservationAtDate(String date)
     {
-        return null;
+        List<Reservation> res = new ArrayList<>();
+        if(reservationRepository.getAll().isEmpty()){
+            return null;
+        }
+        for(Reservation r : reservationRepository.getAll()){
+            if(r.getDate().equals(date)){
+                res.add(r);
+            }
+        }
+        return res;
     }
     public List<Reservation> allReservations()
     {
