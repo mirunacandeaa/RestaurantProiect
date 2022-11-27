@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InMemoryClientRepo implements IClientRepository {
-    private List<Client> clientList = new ArrayList<>();
+    private List<Client> clientList= new ArrayList<>();
 
     public void populate(){
         Client client1 = new Client("Ana", "Blandiana", 1, "072578954", null);

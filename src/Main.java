@@ -20,11 +20,9 @@ public class Main {
 
         Controller controller=new Controller(clientRepo, waiterRepo, reservationRepo, tableRepo);
         View view =new View(controller);
-        view.printnewReservation();
-        //UX ux=new UX(view);
-        //ux.chooseWhatUWantToDo();
-
-
+        //view.printnewReservation();
+        UX ux=new UX(view);
+        ux.chooseWhatUWantToDo();
 
     }
 }

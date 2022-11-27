@@ -40,6 +40,7 @@ public class View {
             System.out.println(c.toString());
         }
         int cID = scan.nextInt();
+        cID = cID-1;
         Client selected = controller.selectClient(cID);
         System.out.println("How many persons for reservations: ");
         int nr = scan.nextInt();
