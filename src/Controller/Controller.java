@@ -143,6 +143,6 @@ public class Controller {
     }
     public List<Reservation> allReservations()
     {
-        return null;
+        return reservationRepository.getAll();
     }
 }

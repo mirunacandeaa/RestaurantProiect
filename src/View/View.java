@@ -60,6 +60,16 @@ public class View {
         System.out.println("Table number" + newRez.getTable());
     }
 
+    public void viewReservations(){
+        List<Reservation> allRez = controller.allReservations();
+        if(allRez.isEmpty())
+            System.out.println("No reservations");
+        else
+            for(Reservation r : allRez){
+                System.out.println(r.toString());
+            }
+    }
+
 
 
 }

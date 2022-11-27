@@ -20,7 +20,10 @@ public class Reservation {
         this.table = table;
         this.nrPersons=nrPersons;
     }
-
+    @Override
+    public String toString(){
+        return "ID: " + reservationID + " | " + "Client: " + client.getName() + " | " + "Date: " + date + " | " + "Table nr: " + table.getTableId() + " | " + "Persons at table: " + nrPersons;
+    }
 
 
     public Integer getReservationID() {
