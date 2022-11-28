@@ -13,6 +13,8 @@ public class InMemoryWaiterRepo implements IWaiterRepository {
     public void populate(){
         Waiter waiter1 = new Waiter("Andrei", "Ivanovici", 1, null);
         Waiter waiter2 = new Waiter("Razvan", "Calasnicov", 2, null);
+        waiterList.add(waiter1);
+        waiterList.add(waiter2);
     }
 
     @Override
