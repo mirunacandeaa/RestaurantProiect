@@ -4,6 +4,11 @@ import java.util.List;
 
 public class Waiter extends Person{
 
+
+    @Override
+    public String toString(){
+        return "Waiter name: " + firstName + ' ' + lastName;
+    }
     private Integer waiterID;
     private List<Table> tableList;
 

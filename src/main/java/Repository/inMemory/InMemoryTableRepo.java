@@ -11,9 +11,9 @@ public class InMemoryTableRepo implements ITableRepository {
     private List<Table> tableList = new ArrayList<>();
 
     public void populate(){
-        Table table1 = new Table(1, 4, null);
-        Table table2 = new Table(2, 2, null);
-        Table table3 = new Table(3, 10, null);
+        Table table1 = new Table(1, 4, new ArrayList<>());
+        Table table2 = new Table(2, 2, new ArrayList<>());
+        Table table3 = new Table(3, 10, new ArrayList<>());
         tableList.add(table1);
         tableList.add(table2);
         tableList.add(table3);

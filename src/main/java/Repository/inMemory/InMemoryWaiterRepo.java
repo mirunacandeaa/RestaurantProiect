@@ -11,8 +11,8 @@ public class InMemoryWaiterRepo implements IWaiterRepository {
     private List<Waiter> waiterList = new ArrayList<>();
 
     public void populate(){
-        Waiter waiter1 = new Waiter("Andrei", "Ivanovici", 1, null);
-        Waiter waiter2 = new Waiter("Razvan", "Calasnicov", 2, null);
+        Waiter waiter1 = new Waiter("Andrei", "Ivanovici", 1, new ArrayList<>());
+        Waiter waiter2 = new Waiter("Razvan", "Calasnicov", 2, new ArrayList<>());
         waiterList.add(waiter1);
         waiterList.add(waiter2);
     }
