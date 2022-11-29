@@ -78,6 +78,12 @@ public class Controller {
         List<Client> clientList = clientRepository.getAll();
         return clientList.get(x);
     }
+
+    public Table selectTable(int x)
+    {
+        List<Table> tableList=tableRepository.getAll();
+        return tableList.get(x);
+    }
     public Reservation makeNewReservation(Client client, Integer nrPersons, String date)
     {
         List<Table> freeTables = this.availableTables(date);
@@ -144,18 +150,38 @@ public class Controller {
         return null;
     }
 
-
-    public List<Table> waitersAtTable(Table table)
+    public Integer CountTablesForWitchWaiterResponsable(Waiter waiter)
     {
-        return null;
+        return waiter.getTableList().size();
     }
 
-    public List<Table> tablesForWaiter(Waiter waiter)
+    public Waiter addWaiterAtTable(Table table)
     {
-        return null;
-    }
-    public Waiter addWaiteratTable(Table table)
-    {
+        Integer min=0;
+        for(Waiter w: waiterRepository.getAll())
+        {
+            if(w.getTableList().isEmpty())
+            {
+                tableRepository.setWaiterListAtTable(w, table);
+                waiterRepository.setTableForWaiter(w, table);
+                return w;
+            }
+            if(CountTablesForWitchWaiterResponsable(w)>min)
+            {
+                min=CountTablesForWitchWaiterResponsable(w);
+            }
+        }
+
+        for(Waiter w: waiterRepository.getAll())
+        {
+            if(CountTablesForWitchWaiterResponsable(w).equals(min))
+            {
+                tableRepository.setWaiterListAtTable(w, table);
+                waiterRepository.setTableForWaiter(w, table);
+                return w;
+            }
+        }
+
         return null;
     }
     public List<Reservation> reservationAtDate(String date)
@@ -174,5 +200,15 @@ public class Controller {
     public List<Reservation> allReservations()
     {
         return reservationRepository.getAll();
+    }
+
+    public List<Waiter> waitersAtTable(Table table)
+    {
+        return tableRepository.getWaitersAtTable(table.getTableId());
+    }
+
+    public List<Table> tablesForWaiter(Waiter waiter)
+    {
+        return null;
     }
 }

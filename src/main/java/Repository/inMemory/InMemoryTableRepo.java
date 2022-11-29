@@ -1,6 +1,7 @@
 package Repository.inMemory;
 
 import Model.Table;
+import Model.Waiter;
 import Repository.ITableRepository;
 
 import java.util.ArrayList;
@@ -58,10 +59,32 @@ public class InMemoryTableRepo implements ITableRepository {
         return null;
     }
 
-
-
     @Override
     public List<Table> getAll() {
         return tableList;
+    }
+
+    @Override
+    public List<Waiter> getWaitersAtTable(Integer ID) {
+        for(Table t: tableList)
+        {
+            if (ID.equals(t.getTableId()))
+            {
+                return t.getWaiterList();
+            }
+        }
+        return null;
+
+    }
+
+    @Override
+    public void setWaiterListAtTable(Waiter waiter, Table table) {
+        for(Table t: tableList)
+        {
+            if(t.equals(table))
+            {
+                t.getWaiterList().add(waiter);
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ import Model.Table;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLOutput;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -86,7 +87,20 @@ public class View {
         }
     }
 
-
+    public void printNewWaiterAtTableAdded() {
+        System.out.println("Choose TableID:");
+        int nr= scan.nextInt();
+        nr=nr-1;
+        Table t=controller.selectTable(nr);
+        if (controller.addWaiterAtTable(t) == null)
+        {
+            System.out.println("No waiter added");
+        }
+        else {
+            System.out.println("Waiter added:");
+            System.out.println(controller.addWaiterAtTable(t).toString());
+        }
+    }
 
 }
 

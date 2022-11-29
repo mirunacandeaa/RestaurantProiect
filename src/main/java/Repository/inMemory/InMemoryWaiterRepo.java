@@ -62,4 +62,27 @@ public class InMemoryWaiterRepo implements IWaiterRepository {
     public List<Waiter> getAll() {
         return waiterList;
     }
+
+    @Override
+    public List<Table> getTablesForWaiter(Integer ID) {
+        for(Waiter w: waiterList)
+        {
+            if(w.getWaiterID().equals(ID))
+            {
+                return w.getTableList();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void setTableForWaiter(Waiter waiter, Table table) {
+        for(Waiter w: waiterList)
+        {
+            if(w.equals(waiter))
+            {
+                w.getTableList().add(table);
+            }
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package Repository.inFile;
 
 import Model.Table;
+import Model.Waiter;
 import Repository.ITableRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -50,4 +51,15 @@ public class InFileTableRepo implements ITableRepository {
     public List<Table> getAll() {
         return null;
     }
+
+    @Override
+    public List<Waiter> getWaitersAtTable(Integer ID) {
+        return null;
+    }
+
+    @Override
+    public void setWaiterListAtTable(Waiter waiter, Table table) {
+
+    }
+
 }
