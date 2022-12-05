@@ -2,6 +2,7 @@ package Model;
 
 import java.util.List;
 
+///class table
 public class Table {
 
 
@@ -43,4 +44,37 @@ public class Table {
     public void setWaiterList(List<Waiter> waiterList) {
         this.waiterList = waiterList;
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (!Table.class.isAssignableFrom(obj.getClass())) {
+            return false;
+        }
+
+        final Table other = (Table) obj;
+
+
+        //If both lastnames are not equal return false
+        if ((this.getTableId() == null) ? (other.getTableId() != null) : !this.getTableId().equals(other.getTableId())) {
+            return false;
+        }
+
+        //If both lastnames are not equal return false
+        if ((this.getWaiterList() == null) ? (other.getWaiterList() != null) : !this.getWaiterList().equals(other.getWaiterList())) {
+            return false;
+        }
+
+        //If both lastnames are not equal return false
+        if ((this.getNrPersons() == null) ? (other.getNrPersons() != null) : !this.getNrPersons().equals(other.getNrPersons())) {
+            return false;
+        }
+
+        return true;
+    }
+
 }

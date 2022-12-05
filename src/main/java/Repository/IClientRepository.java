@@ -4,6 +4,7 @@ import Model.Client;
 
 import java.util.List;
 
+///interface for clients extended from the main interface
 public interface IClientRepository extends ICrudRepository<Integer, Client> {
-//TODO methoda specifica la fiecare IRepo cum a zis mada
+
 }

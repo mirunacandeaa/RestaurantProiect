@@ -10,9 +10,9 @@ public class InMemoryClientRepo implements IClientRepository {
     private List<Client> clientList= new ArrayList<>();
 
     public void populate(){
-        Client client1 = new Client("Ana", "Blandiana", 1, "072578954", null);
-        Client client2 = new Client("Bella", "Hadid", 2, "074558654", null);
-        Client client3= new Client("Selena", "Gomez", 3, "074358654", null);
+        Client client1 = new Client("Ana", "Blandiana", 1, "072578954", new ArrayList<>());
+        Client client2 = new Client("Bella", "Hadid", 2, "074558654", new ArrayList<>());
+        Client client3= new Client("Selena", "Gomez", 3, "074358654", new ArrayList<>());
         clientList.add(client1);
         clientList.add(client2);
         clientList.add(client3);

@@ -5,6 +5,7 @@ import Repository.IClientRepository;
 import Repository.IReservationRepository;
 import Repository.ITableRepository;
 import Repository.IWaiterRepository;
+import Utils.InvalidDataException;
 import View.View;
 
 import java.io.BufferedReader;
@@ -16,6 +17,7 @@ import java.util.Scanner;
 import static java.lang.System.exit;
 
 
+///the interface - takes info from the view
 public class UX {
     Scanner scan= new Scanner(System.in);
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -28,8 +30,8 @@ public class UX {
 
 
 
-    public void chooseWhatUWantToDo()
-    {
+
+    public void chooseWhatUWantToDo() throws InvalidDataException {
         System.out.println("Welcome to your restaurant app that manages everything. ");
         while(true)
         {
@@ -62,6 +64,11 @@ public class UX {
             if(num==5)
             {
                 view.printNewWaiterAtTableAdded();
+            }
+
+            if(num<1 || num>5)
+            {
+                throw new InvalidDataException("The number you typed is invalid");
             }
 
             System.out.println("Do you want to continue? \n 1.Quit\n 2.Continue ");

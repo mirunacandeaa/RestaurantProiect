@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+///the part of the project where the most logic is
 public class Controller {
 
     private IClientRepository clientRepository;
@@ -84,6 +85,8 @@ public class Controller {
         List<Table> tableList=tableRepository.getAll();
         return tableList.get(x);
     }
+
+    ///creates a new reservation by giving it a client and a date and checking for the best fit from the available Tables at that date
     public Reservation makeNewReservation(Client client, Integer nrPersons, String date)
     {
         List<Table> freeTables = this.availableTables(date);
@@ -111,6 +114,7 @@ public class Controller {
 
     }
 
+    ///returns all the available Tables on a certain date
     public List<Table> availableTables(String date)
     {
         if(reservationRepository.getAll().isEmpty())
@@ -147,17 +151,20 @@ public class Controller {
         }
 
 
+      //  throw new IllegalArgumentException("No tables are available on this date");
         return null;
     }
 
+    ///returns the number of tables for which a waiter is responsable
     public Integer CountTablesForWitchWaiterResponsable(Waiter waiter)
     {
         return waiter.getTableList().size();
     }
 
+    ///checks which waiter the least number of tables has and assigns him the new table
     public Waiter addWaiterAtTable(Table table)
     {
-        Integer min=0;
+        int min=0;
         for(Waiter w: waiterRepository.getAll())
         {
             if(w.getTableList().isEmpty())
@@ -166,7 +173,7 @@ public class Controller {
                 waiterRepository.setTableForWaiter(w, table);
                 return w;
             }
-            if(CountTablesForWitchWaiterResponsable(w)>min)
+            else if(CountTablesForWitchWaiterResponsable(w)>min)
             {
                 min=CountTablesForWitchWaiterResponsable(w);
             }
@@ -176,6 +183,7 @@ public class Controller {
         {
             if(CountTablesForWitchWaiterResponsable(w).equals(min))
             {
+
                 tableRepository.setWaiterListAtTable(w, table);
                 waiterRepository.setTableForWaiter(w, table);
                 return w;
@@ -184,6 +192,8 @@ public class Controller {
 
         return null;
     }
+
+    ///checks all the reservation at a certain date
     public List<Reservation> reservationAtDate(String date)
     {
         List<Reservation> res = new ArrayList<>();
@@ -197,18 +207,23 @@ public class Controller {
         }
         return res;
     }
+
+    ///checks all reservations
     public List<Reservation> allReservations()
     {
         return reservationRepository.getAll();
     }
 
+
+    ///checks the waiters assigned at a specific table
     public List<Waiter> waitersAtTable(Table table)
     {
         return tableRepository.getWaitersAtTable(table.getTableId());
     }
 
+    ///checks the tables assigned for a specific waiter
     public List<Table> tablesForWaiter(Waiter waiter)
     {
-        return null;
+        return waiterRepository.getTablesForWaiter(waiter.getWaiterID());
     }
 }

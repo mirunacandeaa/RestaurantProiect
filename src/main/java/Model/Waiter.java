@@ -2,6 +2,7 @@ package Model;
 
 import java.util.List;
 
+///class waiter
 public class Waiter extends Person{
 
 

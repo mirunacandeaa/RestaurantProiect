@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+///the view printing the dates you take from the controller
 public class View {
 
     private Controller controller;
@@ -23,6 +24,7 @@ public class View {
     Scanner scan= new Scanner(System.in);
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+    ///print the available tables on a certain date
     public void printavailableTables(String date){
         System.out.println("Available Tables");
         if(this.controller.availableTables(date)==null)
@@ -35,6 +37,7 @@ public class View {
     }
 
 
+    ///print a new Reservation that contains a client, a table and a nr of persons
     public void printnewReservation(){
         System.out.println("Select Client: ");
         for (Client c : controller.getClients()){
@@ -61,6 +64,7 @@ public class View {
         System.out.println("Table number" + newRez.getTable());
     }
 
+    ///print all reservations
     public void viewReservations(){
         List<Reservation> allRez = controller.allReservations();
         if(allRez.isEmpty())
@@ -71,6 +75,7 @@ public class View {
             }
     }
 
+    ///print all the reservation at a certain date
     public void viewReservationsAtDate(){
         System.out.println("Enter date: ");
         try {
@@ -87,6 +92,7 @@ public class View {
         }
     }
 
+    ///see the new waiter added at a certain table
     public void printNewWaiterAtTableAdded() {
         System.out.println("Choose TableID:");
         int nr= scan.nextInt();

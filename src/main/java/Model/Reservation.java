@@ -2,6 +2,7 @@ package Model;
 
 import java.util.Date;
 
+///class reservation
 public class Reservation {
 
     private static int counter = 0;

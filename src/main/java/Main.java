@@ -9,11 +9,13 @@ import Repository.inMemory.InMemoryReservationRepo;
 import Repository.inMemory.InMemoryTableRepo;
 import Repository.inMemory.InMemoryWaiterRepo;
 import UserExperience.UX;
+import Utils.InvalidDataException;
 import View.View;
 
 
+//initialising the program and apel the UX
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidDataException {
 
         InMemoryTableRepo tableRepo = new InMemoryTableRepo();
         InMemoryWaiterRepo waiterRepo = new InMemoryWaiterRepo();
