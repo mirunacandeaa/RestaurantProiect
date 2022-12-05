@@ -9,10 +9,10 @@ import Repository.IReservationRepository;
 import Repository.ITableRepository;
 import Repository.IWaiterRepository;
 import View.View;
+import net.bytebuddy.asm.Advice;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.text.ParseException;
+import java.util.*;
 
 ///the part of the project where the most logic is
 public class Controller {
@@ -214,7 +214,16 @@ public class Controller {
     ///checks all reservations
     public List<Reservation> allReservations()
     {
-        return reservationRepository.getAll();
+        try{
+            reservationRepository.getAll().sort(Comparator.comparing(Reservation::fromStringToDate));
+        }
+        catch (java.text.ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+
+
     }
 
 

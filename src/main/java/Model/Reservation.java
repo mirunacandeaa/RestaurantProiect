@@ -1,5 +1,7 @@
 package Model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 ///class reservation
@@ -65,6 +67,11 @@ public class Reservation {
 
     public void setNrPersons(Integer nrPersons) {
         this.nrPersons = nrPersons;
+    }
+
+    public Date fromStringToDate() throws ParseException {
+        Date datee=new SimpleDateFormat("dd/MM/yyyy").parse(this.getDate());
+        return datee;
     }
 
 
