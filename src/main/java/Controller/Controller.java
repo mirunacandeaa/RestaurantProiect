@@ -90,6 +90,9 @@ public class Controller {
     public Reservation makeNewReservation(Client client, Integer nrPersons, String date)
     {
         List<Table> freeTables = this.availableTables(date);
+        if(freeTables==null){
+            return null;
+        }
         Table tableForRes = null;
         for(Table t : freeTables){
             if(t.getNrPersons().equals(nrPersons)){

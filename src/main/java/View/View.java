@@ -3,6 +3,7 @@ import Controller.Controller;
 import Model.Client;
 import Model.Reservation;
 import Model.Table;
+import Model.Waiter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,9 +28,11 @@ public class View {
     ///print the available tables on a certain date
     public void printavailableTables(String date){
         System.out.println("Available Tables");
+
         if(this.controller.availableTables(date)==null)
         {
             System.out.println("No available tables");
+            return;
         }
         for(Table t : this.controller.availableTables(date)){
             System.out.println("Table id: " + t.getTableId());
@@ -57,6 +60,10 @@ public class View {
         }
 
         Reservation newRez = controller.makeNewReservation(selected,nr,date);
+        if(newRez==null){
+            System.out.println("No available tables for that many persons at that date. Try again.");
+            printnewReservation();
+        }
         System.out.println("Reservation created ");
         System.out.println("Reservation ID: " + newRez.getReservationID());
         System.out.println("Client: " + newRez.getClient());
