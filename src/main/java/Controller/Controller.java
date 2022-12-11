@@ -75,6 +75,7 @@ public class Controller {
         return clientRepository.getAll();
     }
 
+    //functie ajutatoare pentru noi ca sa testam ca merge programul
     public Client selectClient(int x){
         List<Client> clientList = clientRepository.getAll();
         return clientList.get(x);
@@ -210,6 +211,8 @@ public class Controller {
         }
         return res;
     }
+
+
 
     ///checks all reservations
     public List<Reservation> allReservations()
