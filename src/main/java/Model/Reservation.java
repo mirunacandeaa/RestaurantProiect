@@ -69,8 +69,8 @@ public class Reservation {
         this.nrPersons = nrPersons;
     }
 
-    public Date fromStringToDate() throws ParseException {
-        Date datee=new SimpleDateFormat("dd/MM/yyyy").parse(this.getDate());
+    public Date fromStringToDate() throws java.text.ParseException {
+        Date datee=new SimpleDateFormat("dd-MM-yyyy").parse(this.getDate());
         return datee;
     }
 

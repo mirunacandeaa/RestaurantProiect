@@ -28,9 +28,9 @@ public class Main {
         tableRepo.populate();
         clientRepo.populate();
         waiterRepo.populate();
-        Reservation rez1 = new Reservation(clientRepo.getAll().get(0),"27-10-2002", tableRepo.getAll().get(0),2);
-        Reservation rez2 = new Reservation(clientRepo.getAll().get(0),"27-10-2002", tableRepo.getAll().get(1),4);
-        Reservation rez3 = new Reservation(clientRepo.getAll().get(0),"27-10-2002", tableRepo.getAll().get(2),10);
+        Reservation rez1 = new Reservation(clientRepo.getAll().get(0),"27-10-2003", tableRepo.getAll().get(0),2);
+        Reservation rez2 = new Reservation(clientRepo.getAll().get(0),"27-10-2004", tableRepo.getAll().get(1),4);
+        Reservation rez3 = new Reservation(clientRepo.getAll().get(0),"27-09-2002", tableRepo.getAll().get(2),10);
 
 
         reservationRepo.add(rez1);

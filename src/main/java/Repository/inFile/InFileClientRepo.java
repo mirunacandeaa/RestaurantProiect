@@ -1,12 +1,9 @@
+/*
 package Repository.inFile;
 
 import Model.Client;
 import Repository.IClientRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
-import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
+
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -111,3 +108,4 @@ public class InFileClientRepo implements IClientRepository {
         return clientList;
     }
 }
+*/

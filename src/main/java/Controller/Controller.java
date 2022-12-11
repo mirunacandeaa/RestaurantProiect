@@ -9,7 +9,7 @@ import Repository.IReservationRepository;
 import Repository.ITableRepository;
 import Repository.IWaiterRepository;
 import View.View;
-import net.bytebuddy.asm.Advice;
+
 
 import java.text.ParseException;
 import java.util.*;
@@ -217,16 +217,19 @@ public class Controller {
     ///checks all reservations
     public List<Reservation> allReservations()
     {
-        try{
-            reservationRepository.getAll().sort(Comparator.comparing(Reservation::fromStringToDate));
-        }
-        catch (java.text.ParseException e)
-        {
-            e.printStackTrace();
-        }
-
-
-
+        List<Reservation> reservationList = reservationRepository.getAll();
+        Collections.sort(reservationList, new Comparator<Reservation>() {
+            @Override
+            public int compare(Reservation o1, Reservation o2) {
+                try {
+                    return o1.fromStringToDate().compareTo(o2.fromStringToDate());
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        Collections.reverse(reservationList);
+        return reservationList;
     }
 
 
