@@ -1,8 +1,10 @@
 package Tests;
 
 import Controller.Controller;
+import Model.Client;
 import Model.Reservation;
 import Model.Table;
+import Model.Waiter;
 import Repository.inFile.InFileClientRepo;
 import Repository.inMemory.InMemoryClientRepo;
 import Repository.inMemory.InMemoryReservationRepo;
@@ -29,7 +31,7 @@ public class Tests {
 
     Controller controller;
     @Before
-    public void SetUp()
+    public void setUp()
     {
         inMemoryReservationRepo=new InMemoryReservationRepo();
         inMemoryClientRepo=new InMemoryClientRepo();
@@ -43,8 +45,20 @@ public class Tests {
     }
 
     @Test
-    public void testMakeNewReservation()
-    {
+    public void testMakeNewReservation() {
+        Client client = new Client("Ana", "Lazar", 1, "074593456", new ArrayList<>());
+        int nrPersons = 5;
+        String date = "0-1-0";
+
+        Reservation goodRez = null;
+        for (Table t : inMemoryTableRepo.getAll()) {
+            if (t.getTableId() == 1) {
+                goodRez = new Reservation(client, date, t, nrPersons);
+                break;
+            }
+        }
+        Reservation testRez = controller.makeNewReservation(client, nrPersons, date);
+        assertEquals(testRez, goodRez);
 
     }
 
@@ -73,9 +87,33 @@ public class Tests {
         assertEquals(expectedArray, avTables);
 
         List<Table> avTables2=controller.availableTables("0-0-0");
+        assertNull(avTables2);
+
+    }
+
+    @Test
+    public void testaddWaiterAtTable()
+    {
+        Table table = new Table(5, 20, new ArrayList<>());
+        Waiter waiter=controller.addWaiterAtTable(table);
+
+        for(Waiter w: inMemoryWaiterRepo.getAll())
+        {
+            if(w.getWaiterID()==2)
+            {
+                assertEquals(waiter, w);
+                break;
+            }
+        }
 
 
     }
 
+
+    @Test
+    public void testReservationAtDate()
+    {
+
+    }
 
 }
