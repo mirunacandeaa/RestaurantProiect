@@ -12,6 +12,7 @@ import UserExperience.UX;
 import Utils.InvalidDataException;
 import View.View;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws InvalidDataException {
 
-        InMemoryTableRepo tableRepo = new InMemoryTableRepo();
+        /*InMemoryTableRepo tableRepo = new InMemoryTableRepo();
         InMemoryWaiterRepo waiterRepo = new InMemoryWaiterRepo();
         InMemoryClientRepo clientRepo = new InMemoryClientRepo();
         InMemoryReservationRepo reservationRepo = new InMemoryReservationRepo();
@@ -45,10 +46,36 @@ public class Main {
         Controller controller=new Controller(clientRepo, waiterRepo, reservationRepo, tableRepo);
         View view =new View(controller);
         UX ux=new UX(view);
-        ux.chooseWhatUWantToDo();
+        ux.chooseWhatUWantToDo();*/
 
-
+        String url = "jdbc:sqlserver://localhost\\SQLEXPRESS;database=Restaurant;"
+                + "user=guest;"
+                + "password=1234;"
+                + "encrypt=true;"
+                + "trustServerCertificate=true;";
+        Connection conn = null;
+        List<Client> clients = new ArrayList<>();
+        try {
+            conn = DriverManager.getConnection(url);
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM Client;");
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                int id = resultSet.getInt("clientID");
+                String firstName = resultSet.getString("firstName");
+                String lastName = resultSet.getString("lastName");
+                String phone = resultSet.getString("phone");
+                Client client = new Client(firstName,lastName,id,phone,null);
+                clients.add(client);
+                System.out.println(id + " " + firstName + " " + lastName + " " + phone);
+        }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        for(Client c : clients){
+            System.out.println(c);
+        }
+        System.out.println(clients.size());
+        }
 
 
     }
-}
