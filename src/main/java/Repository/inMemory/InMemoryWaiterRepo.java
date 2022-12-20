@@ -40,6 +40,7 @@ public class InMemoryWaiterRepo implements IWaiterRepository {
     public boolean update(Integer ID, Waiter waiter) {
         for(Waiter c : waiterList){
             if(c.getWaiterID().equals(ID)){
+                waiter.setWaiterID(ID);
                 c=waiter;
                 return true;
             }

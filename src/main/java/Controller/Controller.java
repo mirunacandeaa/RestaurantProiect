@@ -13,6 +13,7 @@ import View.View;
 
 import java.text.ParseException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 ///the part of the project where the most logic is
 public class Controller {
@@ -197,18 +198,19 @@ public class Controller {
         return null;
     }
 
-    ///checks all the reservation at a certain date
+    ///checks all the reservations at a certain date
     public List<Reservation> reservationAtDate(String date)
     {
         List<Reservation> res = new ArrayList<>();
         if(reservationRepository.getAll().isEmpty()){
             return null;
         }
-        for(Reservation r : reservationRepository.getAll()){
+/*        for(Reservation r : reservationRepository.getAll()){
             if(r.getDate().equals(date)){
                 res.add(r);
             }
-        }
+        }*/
+        res = reservationRepository.getAll().stream().filter(r->r.getDate().equals(date)).collect(Collectors.toList());
         return res;
     }
 

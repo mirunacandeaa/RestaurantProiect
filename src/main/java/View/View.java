@@ -51,7 +51,7 @@ public class View {
         Client selected = controller.selectClient(cID);
         System.out.println("How many persons for reservations: ");
         int nr = scan.nextInt();
-        System.out.println("Enter date: ");
+        System.out.println("Enter date(format must be yyyy-mm-dd): ");
         String date = null;
         try {
             date = br.readLine();

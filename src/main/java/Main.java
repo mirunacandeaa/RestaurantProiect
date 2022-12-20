@@ -4,14 +4,18 @@ import Model.Reservation;
 import Model.Table;
 import Model.Waiter;
 
+import Repository.JDBA.JDBAClientRepo;
+import Repository.JDBA.JDBAReservationRepo;
+import Repository.JDBA.JDBATableRepo;
+import Repository.JDBA.JDBAWaiterRepo;
 import Repository.inMemory.InMemoryClientRepo;
 import Repository.inMemory.InMemoryReservationRepo;
 import Repository.inMemory.InMemoryTableRepo;
 import Repository.inMemory.InMemoryWaiterRepo;
 import UserExperience.UX;
 import Utils.InvalidDataException;
-import View.View;
 
+import View.View;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,34 +52,16 @@ public class Main {
         UX ux=new UX(view);
         ux.chooseWhatUWantToDo();*/
 
-        String url = "jdbc:sqlserver://localhost\\SQLEXPRESS;database=Restaurant;"
-                + "user=guest;"
-                + "password=1234;"
-                + "encrypt=true;"
-                + "trustServerCertificate=true;";
-        Connection conn = null;
-        List<Client> clients = new ArrayList<>();
-        try {
-            conn = DriverManager.getConnection(url);
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM Client;");
-            ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()){
-                int id = resultSet.getInt("clientID");
-                String firstName = resultSet.getString("firstName");
-                String lastName = resultSet.getString("lastName");
-                String phone = resultSet.getString("phone");
-                Client client = new Client(firstName,lastName,id,phone,null);
-                clients.add(client);
-                System.out.println(id + " " + firstName + " " + lastName + " " + phone);
-        }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        for(Client c : clients){
-            System.out.println(c);
-        }
-        System.out.println(clients.size());
-        }
-
-
+        JDBATableRepo jdbaTableRepo = new JDBATableRepo();
+        JDBAWaiterRepo jdbaWaiterRepo = new JDBAWaiterRepo();
+        JDBAClientRepo jdbaClientRepo = new JDBAClientRepo();
+        JDBAReservationRepo jdbaReservationRepo = new JDBAReservationRepo();
+        jdbaTableRepo.actualiseWaitersAtTables();
+        jdbaWaiterRepo.actualiseWaitersAtTables();
+        jdbaClientRepo.addReservations();
+        Controller controller = new Controller(jdbaClientRepo,jdbaWaiterRepo,jdbaReservationRepo,jdbaTableRepo);
+        View view = new View(controller);
+        UX ux = new UX(view);
+        ux.chooseWhatUWantToDo();
     }
+}

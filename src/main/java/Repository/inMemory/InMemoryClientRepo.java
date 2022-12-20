@@ -41,6 +41,7 @@ public class InMemoryClientRepo implements IClientRepository {
     public boolean update(Integer ID, Client client) {
         for(Client c : clientList){
             if(c.getClientID().equals(ID)){
+                client.setClientID(ID);
                 c=client;
                 return true;
                  }

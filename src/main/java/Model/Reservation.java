@@ -70,7 +70,7 @@ public class Reservation {
     }
 
     public Date fromStringToDate() throws java.text.ParseException {
-        Date datee=new SimpleDateFormat("dd-MM-yyyy").parse(this.getDate());
+        Date datee=new SimpleDateFormat("yyyy-MM-dd").parse(this.getDate());
         return datee;
     }
 

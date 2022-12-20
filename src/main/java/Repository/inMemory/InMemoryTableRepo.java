@@ -42,6 +42,7 @@ public class InMemoryTableRepo implements ITableRepository {
     public boolean update(Integer ID, Table table) {
         for(Table c : tableList){
             if(c.getTableId().equals(ID)){
+                table.setTableId(ID);
                 c=table;
                 return true;
             }

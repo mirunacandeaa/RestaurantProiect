@@ -35,6 +35,7 @@ public class InMemoryReservationRepo implements IReservationRepository {
     public boolean update(Integer ID, Reservation reservation) {
         for(Reservation c : reservationList){
             if(c.getReservationID().equals(ID)){
+                reservation.setReservationID(ID);
                 c=reservation;
                 return true;
             }
