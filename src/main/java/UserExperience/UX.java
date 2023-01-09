@@ -206,14 +206,15 @@ public class UX {
         System.out.println("Welcome to your restaurant app that manages everything. ");
         int role= loginCreds();
 
-        if(role==1)
-        {
-            adminmenu();
-        }
-        if(role==0)
-        {
-            waitermenu();
-        }
+            if(role==1)
+            {
+                adminmenu();
+            }
+            if(role==0)
+            {
+                waitermenu();
+            }
+
         throw new InvalidRoleException("Not a valid role");
 
 
