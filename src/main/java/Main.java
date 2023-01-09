@@ -5,10 +5,7 @@ import Model.Reservation;
 import Model.Table;
 import Model.Waiter;
 
-import Repository.JDBA.JDBAClientRepo;
-import Repository.JDBA.JDBAReservationRepo;
-import Repository.JDBA.JDBATableRepo;
-import Repository.JDBA.JDBAWaiterRepo;
+import Repository.JDBA.*;
 import Repository.inMemory.InMemoryClientRepo;
 import Repository.inMemory.InMemoryReservationRepo;
 import Repository.inMemory.InMemoryTableRepo;
@@ -31,6 +28,8 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws InvalidNameException, InvalidDataException, InvalidPasswordException, InvalidRoleException, IOException {
         Application app = new Application();
-        app.runInMemory();
+        app.runWithDatabase();
+
+
     }
 }

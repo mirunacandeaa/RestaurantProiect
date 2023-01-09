@@ -1,43 +1,38 @@
 package Repository.JDBA;
 
-import Model.Client;
+import javassist.compiler.ast.Pair;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class LoginRepo {
-    private List<String> usernameList;
-    private List<String> passwordList;
+public class JDBALoginRepo {
+    private Map<String, String> loginCredentials;
     private String url;
-    public LoginRepo(){
+    public JDBALoginRepo(){
         url = "jdbc:sqlserver://localhost\\SQLEXPRESS;database=Restaurant;"
                 + "user=guest;"
                 + "password=1234;"
                 + "encrypt=true;"
                 + "trustServerCertificate=true;";
-        usernameList = new ArrayList<>();
-        passwordList = new ArrayList<>();
+        loginCredentials = new HashMap<>();
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
             PreparedStatement statement = conn.prepareStatement("SELECT * FROM login_credentials;");
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
-                int id = resultSet.getInt("clientID");
                 String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
-                usernameList.add(username);
-                passwordList.add(password);
+                loginCredentials.put(username,password);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    public List<String> getUsernameList(){
-        return usernameList;
-    }
-    public List<String> getPasswordList(){
-        return passwordList;
+    public Map<String,String> getLoginCredentials(){
+        return loginCredentials;
     }
 }

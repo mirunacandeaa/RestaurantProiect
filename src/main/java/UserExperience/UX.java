@@ -50,11 +50,11 @@ public class UX {
         int WrongPass=0;
         while(true) {
             try {
-                if (Namen.equals("Popa Antonia")) {
+                if (view.checkUser(Namen)) {
                     BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
-                    String PassWord = br2.readLine();
                     System.out.println("Password:");
-                    if (PassWord.equals("1234lol"))
+                    String PassWord = br2.readLine();
+                    if (view.checkPass(Namen,PassWord))
                         return 1;
                     else {
                         throw new InvalidPasswordException(" ");

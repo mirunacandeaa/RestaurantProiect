@@ -132,5 +132,8 @@ public class View {
 
     public List<Waiter> getWaiters(){return controller.getWaiters();}
 
+    public boolean checkUser(String user){return controller.checkUsername(user);}
+    public boolean checkPass(String user,String pass){return controller.checkPassword(user,pass);}
+
 }
 
