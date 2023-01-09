@@ -59,8 +59,8 @@ public class View {
 
         try {
             date = br.readLine();
-        } catch (Exception e) {
-            throw new InvalidDataException("The date you typed is invalid");
+        } catch (IOException e) {
+            printnewReservation();
         }
 
         Reservation newRez = controller.makeNewReservation(selected,nr,date);

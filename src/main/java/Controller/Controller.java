@@ -8,7 +8,6 @@ import Repository.IClientRepository;
 import Repository.IReservationRepository;
 import Repository.ITableRepository;
 import Repository.IWaiterRepository;
-import Repository.JDBA.JDBALoginRepo;
 import View.View;
 
 
@@ -23,8 +22,6 @@ public class Controller {
     private IWaiterRepository waiterRepository;
     private IReservationRepository reservationRepository;
     private ITableRepository tableRepository;
-
-    private final JDBALoginRepo loginRepo = new JDBALoginRepo();
 
 
     public IClientRepository getClientRepository() {
@@ -244,14 +241,6 @@ public class Controller {
     public List<Table> tablesForWaiter(Waiter waiter)
     {
         return waiterRepository.getTablesForWaiter(waiter.getWaiterID());
-    }
-
-    public boolean checkUsername(String user){
-        return loginRepo.getLoginCredentials().containsKey(user);
-    }
-
-    public boolean checkPassword(String user, String pass){
-        return Objects.equals(loginRepo.getLoginCredentials().get(user), pass);
     }
 
 
