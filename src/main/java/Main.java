@@ -15,7 +15,12 @@ import Repository.inMemory.InMemoryWaiterRepo;
 import UserExperience.UX;
 import Utils.InvalidDataException;
 
+import Utils.InvalidNameException;
+import Utils.InvalidPasswordException;
+import Utils.InvalidRoleException;
 import View.View;
+
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +28,9 @@ import java.util.List;
 
 //initialising the program and apel the UX
 public class Main {
-    public static void main(String[] args) throws InvalidDataException {
+    public static void main(String[] args) throws InvalidDataException, InvalidNameException, InvalidPasswordException, InvalidRoleException, IOException {
 
-        /*InMemoryTableRepo tableRepo = new InMemoryTableRepo();
+        InMemoryTableRepo tableRepo = new InMemoryTableRepo();
         InMemoryWaiterRepo waiterRepo = new InMemoryWaiterRepo();
         InMemoryClientRepo clientRepo = new InMemoryClientRepo();
         InMemoryReservationRepo reservationRepo = new InMemoryReservationRepo();
@@ -50,9 +55,9 @@ public class Main {
         Controller controller=new Controller(clientRepo, waiterRepo, reservationRepo, tableRepo);
         View view =new View(controller);
         UX ux=new UX(view);
-        ux.chooseWhatUWantToDo();*/
+        ux.chooseWhatUWantToDo();
 
-        JDBATableRepo jdbaTableRepo = new JDBATableRepo();
+/*        JDBATableRepo jdbaTableRepo = new JDBATableRepo();
         JDBAWaiterRepo jdbaWaiterRepo = new JDBAWaiterRepo();
         JDBAClientRepo jdbaClientRepo = new JDBAClientRepo();
         JDBAReservationRepo jdbaReservationRepo = new JDBAReservationRepo();
@@ -62,6 +67,6 @@ public class Main {
         Controller controller = new Controller(jdbaClientRepo,jdbaWaiterRepo,jdbaReservationRepo,jdbaTableRepo);
         View view = new View(controller);
         UX ux = new UX(view);
-        ux.chooseWhatUWantToDo();
+        ux.chooseWhatUWantToDo();*/
     }
 }
