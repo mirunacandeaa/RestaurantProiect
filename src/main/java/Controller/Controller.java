@@ -246,4 +246,8 @@ public class Controller {
     public List<Waiter> getWaiters(){
         return waiterRepository.getAll();
     }
+
+    public List<Waiter> getWaiters() {
+        return waiterRepository.getAll();
+    }
 }

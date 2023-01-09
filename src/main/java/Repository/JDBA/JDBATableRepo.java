@@ -150,6 +150,25 @@ public class JDBATableRepo implements ITableRepository {
 
     @Override
     public void setWaiterListAtTable(Waiter waiter, Table table) {
-
+        for(Table t: tableList)
+        {
+            if(t.equals(table))
+            {
+                t.getWaiterList().add(waiter);
+            }
+        }
+        Connection conn = null;
+        int ok=0;
+        try {
+            conn = DriverManager.getConnection(url);
+            String sql = "INSERT INTO WaitersAtTables(tableID,waiterID) VALUES("
+                    +table.getTableId()+","+waiter.getWaiterID()+");";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            if(statement.executeUpdate()==1)
+                ok=1;
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

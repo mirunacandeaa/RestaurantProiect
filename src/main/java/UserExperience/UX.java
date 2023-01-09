@@ -26,14 +26,11 @@ public class UX {
     Scanner scan = new Scanner(System.in);
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     Scanner logscan = new Scanner(System.in);
-
-
     private View view;
 
     public UX(View view) {
         this.view = view;
     }
-
 
 
     public int loginCreds() throws IOException, InvalidPasswordException, InvalidNameException {
@@ -47,30 +44,17 @@ public class UX {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String Namen = br.readLine();
-        int WrongPass=0;
-        while(true) {
-            try {
-                if (Namen.equals("Popa Antonia")) {
-                    BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
-                    String PassWord = br2.readLine();
-                    System.out.println("Password:");
-                    if (PassWord.equals("1234lol"))
-                        return 1;
-                    else {
-                        throw new InvalidPasswordException(" ");
-                    }
-                }
-            } catch (InvalidPasswordException e) {
-                WrongPass++;
-                System.out.println("The password for this user is invalid");
-                if (WrongPass > 2) {
-                    System.out.println("You wrote the wrong password too many times. Loser");
-                    exit(0);
-                }
+
+        if (Namen.equals("Popa Antonia")) {
+            BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
+            String PassWord = br2.readLine();
+            System.out.println("Password:");
+            if (PassWord.equals("1234lol"))
+                return 1;
+            else{
+                throw new InvalidPasswordException("The password for this user is invalid");
             }
         }
-
-
 
         for (Waiter w : view.getWaiters()) {
             System.out.println(w.getName());
