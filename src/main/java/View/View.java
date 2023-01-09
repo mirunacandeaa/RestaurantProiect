@@ -102,16 +102,19 @@ public class View {
     ///see the new waiter added at a certain table
     public void printNewWaiterAtTableAdded() {
         System.out.println("Choose TableID:");
+        for(Table t : controller.getAllTables())
+            System.out.println(t);
         int nr= scan.nextInt();
         nr=nr-1;
         Table t=controller.selectTable(nr);
-        if (controller.addWaiterAtTable(t) == null)
+        Waiter waiter = controller.addWaiterAtTable(t);
+        if (waiter == null)
         {
             System.out.println("No waiter added");
         }
         else {
             System.out.println("Waiter added:");
-            System.out.println(controller.addWaiterAtTable(t).toString());
+            System.out.println(waiter.toString());
         }
     }
 

@@ -25,7 +25,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws InvalidDataException {
 
-        /*InMemoryTableRepo tableRepo = new InMemoryTableRepo();
+        InMemoryTableRepo tableRepo = new InMemoryTableRepo();
         InMemoryWaiterRepo waiterRepo = new InMemoryWaiterRepo();
         InMemoryClientRepo clientRepo = new InMemoryClientRepo();
         InMemoryReservationRepo reservationRepo = new InMemoryReservationRepo();
@@ -45,14 +45,15 @@ public class Main {
         List<Waiter> waiterList = new ArrayList<>();
         waiterList.add(waiterRepo.getAll().get(0));
         tableRepo.getAll().get(0).setWaiterList(waiterList);
+        waiterRepo.getAll().get(0).getTableList().add(tableRepo.getAll().get(0));
         System.out.println(tableRepo.getWaitersAtTable(1));
 
         Controller controller=new Controller(clientRepo, waiterRepo, reservationRepo, tableRepo);
         View view =new View(controller);
         UX ux=new UX(view);
-        ux.chooseWhatUWantToDo();*/
+        ux.chooseWhatUWantToDo();
 
-        JDBATableRepo jdbaTableRepo = new JDBATableRepo();
+/*        JDBATableRepo jdbaTableRepo = new JDBATableRepo();
         JDBAWaiterRepo jdbaWaiterRepo = new JDBAWaiterRepo();
         JDBAClientRepo jdbaClientRepo = new JDBAClientRepo();
         JDBAReservationRepo jdbaReservationRepo = new JDBAReservationRepo();
@@ -62,6 +63,6 @@ public class Main {
         Controller controller = new Controller(jdbaClientRepo,jdbaWaiterRepo,jdbaReservationRepo,jdbaTableRepo);
         View view = new View(controller);
         UX ux = new UX(view);
-        ux.chooseWhatUWantToDo();
+        ux.chooseWhatUWantToDo();*/
     }
 }

@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.Arrays;
 import java.util.List;
 
 ///class table
@@ -12,7 +13,7 @@ public class Table {
 
     @Override
     public String toString(){
-        return "TableId: " + getTableId();
+        return "TableId: " + getTableId() + ' ' + Arrays.toString(waiterList.toArray());
     }
 
     public Table(Integer tableId, Integer nrPersons, List<Waiter> waiterList) {
