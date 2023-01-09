@@ -169,29 +169,33 @@ public class Controller {
     ///checks which waiter the least number of tables has and assigns him the new table
     public Waiter addWaiterAtTable(Table table)
     {
-        int tableNr = table.getTableId();
-        List<Waiter> waitersWithoutGivenTable = new ArrayList<>();
-        for(Waiter w : waiterRepository.getAll()){
-            int ok = 1;
-            for(Table t : w.getTableList()){
-                if(t.getTableId()==tableNr)
-                    ok = 0;
+        int min=0;
+        for(Waiter w: waiterRepository.getAll())
+        {
+            if(w.getTableList().isEmpty())
+            {
+                tableRepository.setWaiterListAtTable(w, table);
+                waiterRepository.setTableForWaiter(w, table);
+                return w;
             }
-            if(ok==1){
-                waitersWithoutGivenTable.add(w);
+            else if(CountTablesForWitchWaiterResponsable(w)>min)
+            {
+                min=CountTablesForWitchWaiterResponsable(w);
             }
         }
-        int min = 1000;
-        Waiter waiterWithFewestTables = null;
-        for(Waiter w : waitersWithoutGivenTable){
-            if(w.getTableList().size()<min)
-                waiterWithFewestTables=w;
+
+        for(Waiter w: waiterRepository.getAll())
+        {
+            if(CountTablesForWitchWaiterResponsable(w).equals(min))
+            {
+
+                tableRepository.setWaiterListAtTable(w, table);
+                waiterRepository.setTableForWaiter(w, table);
+                return w;
+            }
         }
-        if(waiterWithFewestTables==null)
-            return null;
-        waiterRepository.setTableForWaiter(waiterWithFewestTables,table);
-        tableRepository.setWaiterListAtTable(waiterWithFewestTables,table);
-        return waiterWithFewestTables;
+
+        return null;
     }
 
     ///checks all the reservations at a certain date

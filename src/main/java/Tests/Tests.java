@@ -88,8 +88,10 @@ public class Tests {
 
         List<Table> avTables2=controller.availableTables("0-0-0");
         assertNull(avTables2);
-
     }
+
+
+
 
     @Test
     public void testaddWaiterAtTable()

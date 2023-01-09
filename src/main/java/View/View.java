@@ -118,5 +118,7 @@ public class View {
         }
     }
 
+    public List<Waiter> getWaiters(){return controller.getWaiters();}
+
 }
 
