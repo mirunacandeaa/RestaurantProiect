@@ -44,6 +44,7 @@ public class Tests {
         controller=new Controller(inMemoryClientRepo, inMemoryWaiterRepo, inMemoryReservationRepo, inMemoryTableRepo);
     }
 
+
     @Test
     public void testMakeNewReservation() {
         Client client = new Client("Ana", "Lazar", 1, "074593456", new ArrayList<>());

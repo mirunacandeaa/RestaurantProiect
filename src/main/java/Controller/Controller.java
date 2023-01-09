@@ -243,9 +243,6 @@ public class Controller {
         return waiterRepository.getTablesForWaiter(waiter.getWaiterID());
     }
 
-    public List<Waiter> getWaiters(){
-        return waiterRepository.getAll();
-    }
 
     public List<Waiter> getWaiters() {
         return waiterRepository.getAll();
