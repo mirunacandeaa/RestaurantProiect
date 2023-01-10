@@ -31,7 +31,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws InvalidNameException, InvalidDataException, InvalidPasswordException, InvalidRoleException, IOException {
         Application app = new Application();
-        app.runInMemory();
+        app.runWithDatabase();
 
 
     }

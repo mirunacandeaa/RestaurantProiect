@@ -233,8 +233,9 @@ public class Controller {
         int min = 1000;
         Waiter waiterWithFewestTables = null;
         for(Waiter w : waitersWithoutGivenTable){
-            if(w.getTableList().size()<min)
-                waiterWithFewestTables=w;
+            if(w.getTableList().size()<min){
+                min = w.getTableList().size();
+                waiterWithFewestTables=w;}
         }
         if(waiterWithFewestTables==null)
             return null;
@@ -315,12 +316,8 @@ public class Controller {
      * @return
      */
     public boolean checkUsername(String user){
-       // return loginRepo.getLoginCredentials().containsKey(user);
-        if(user.equals("Popa Antonia"))
-        {
-            return true;
-        }
-        return false;
+        return loginRepo.getLoginCredentials().containsKey(user);
+
     }
 
     /**
@@ -330,11 +327,7 @@ public class Controller {
      * @return
      */
     public boolean checkPassword(String user, String pass){
-        if(pass.equals("1234lol"))
-        {
-            return true;
-        }
-        return false;
+        return Objects.equals(loginRepo.getLoginCredentials().get(user), pass);
     }
 
     /**

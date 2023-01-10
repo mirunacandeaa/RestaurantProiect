@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLOutput;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static java.lang.System.exit;
@@ -214,6 +215,11 @@ public class UX {
                 System.out.println("The number you typed is invalid");
                 adminmenu(role);
             }
+/*            catch (InputMismatchException e)
+            {
+                System.out.println("The value you typed is invalid");
+                adminmenu(role);
+            }*/
 
 
             continueprogram(role);
