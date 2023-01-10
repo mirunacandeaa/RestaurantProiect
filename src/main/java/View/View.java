@@ -5,6 +5,7 @@ import Model.Reservation;
 import Model.Table;
 import Model.Waiter;
 import Utils.InvalidDataException;
+import Utils.InvalidTablesException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -63,16 +64,22 @@ public class View {
             printnewReservation();
         }
 
-        Reservation newRez = controller.makeNewReservation(selected,nr,date);
-        if(newRez==null){
+        try{
+            Reservation newRez = controller.makeNewReservation(selected,nr,date);
+            if(newRez==null){
+                throw new InvalidTablesException("demo");
+            }
+            System.out.println("Reservation created ");
+            System.out.println("Reservation ID: " + newRez.getReservationID());
+            System.out.println("Client: " + newRez.getClient());
+            System.out.println("Reservation date: " + newRez.getDate());
+            System.out.println("Table number" + newRez.getTable());
+        }
+        catch (InvalidTablesException E){
             System.out.println("No available tables for that many persons at that date. Try again.");
             printnewReservation();
         }
-        System.out.println("Reservation created ");
-        System.out.println("Reservation ID: " + newRez.getReservationID());
-        System.out.println("Client: " + newRez.getClient());
-        System.out.println("Reservation date: " + newRez.getDate());
-        System.out.println("Table number" + newRez.getTable());
+
     }
 
     ///print all reservations
@@ -91,15 +98,20 @@ public class View {
         System.out.println("Enter date: ");
         try {
             String date = br.readLine();
+
             List<Reservation> res = controller.reservationAtDate(date);
             if(res.isEmpty())
                 System.out.println("No reservations at " + date);
-            else
-                for(Reservation r : res){
+            else {
+                for (Reservation r : res) {
                     System.out.println(r.toString());
                 }
-        } catch (Exception e) {
+            }
             throw new InvalidDataException("The date you typed is invalid");
+
+        } catch (InvalidDataException | IOException e) {
+            System.out.println("The date you typed is invalid");
+            viewReservationsAtDate();
         }
     }
 
@@ -108,6 +120,7 @@ public class View {
         System.out.println("Choose TableID:");
         for(Table t : controller.getAllTables())
             System.out.println(t);
+
 
         try
         {
@@ -123,12 +136,17 @@ public class View {
                 System.out.println("Waiter added:");
                 System.out.println(waiter.toString());
             }
-        }
-        catch(Exception e){
-            throw new InvalidDataException("The number you typed is invalid");
+
+            throw new InvalidDataException("d");}
+        catch(InvalidDataException e){
+            System.out.println("The number you typed is invalid");
+            printNewWaiterAtTableAdded();
         }
 
+
     }
+
+
 
     public List<Waiter> getWaiters(){return controller.getWaiters();}
 

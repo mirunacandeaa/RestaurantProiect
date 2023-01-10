@@ -75,127 +75,175 @@ public class UX {
 
 
 
-        for (Waiter w : view.getWaiters()) {
-            System.out.println(w.getName());
-            if (w.getName().equals(Namen)) {
-                check = 1;
+        try
+        {
+            for (Waiter w : view.getWaiters()) {
+                System.out.println(w.getName());
+                if (w.getName().equals(Namen)) {
+                    check = 1;
+                }
+            }
+
+            if (check != 1) {
+                throw new InvalidNameException("The user does not exist");
             }
         }
-
-        if (check != 1) {
-            throw new InvalidNameException("The user does not exist");
+        catch (InvalidNameException E)
+        {
+            System.out.println("The user does not exist");
+            loginCreds();
         }
+
 
         for (Waiter w : view.getWaiters()) {
 
             if (w.getName().equals(Namen)) {
                 System.out.println("Password:");
-                int PassWord = logscan.nextInt();
-                if (PassWord != w.getWaiterID()) {
-                    throw new InvalidPasswordException("The password for this user is invalid");
+                while (true) {
+                    try {
+                        int PassWord = logscan.nextInt();
+                        if (PassWord != w.getWaiterID()) {
+                            throw new InvalidPasswordException("The password for this user is invalid");
+                        } else {
+                            return 0;
+                        }
+                    } catch (InvalidPasswordException E) {
+                        WrongPass++;
+                        System.out.println("The password for this user is invalid");
+                        if (WrongPass > 2) {
+                            System.out.println("You wrote the wrong password too many times. Loser");
+                            exit(0);
+                        }
+                    }
                 }
+
             }
         }
 
-        return 0;
+        return 2;
     }
 
+    public void continueprogram(int role) throws InvalidDataException {
+        System.out.println("Do you want to continue? \n 1.Quit\n 2.Continue ");
 
-    public void adminmenu() throws InvalidDataException {
-        while(true)
-        {
-            System.out.println("What would you like to do? \n 1.Confirm new Reservation  \n 2.See available Tables \n 3.See all Reservations \n 4.View reservations at date \n 5.Add Waiter at Table"  );
-            int num= scan.nextInt();
-            if(num==1)
-            {
-                view.printnewReservation();
-            }
-            if(num==2)
-            {
-
-                System.out.println("Select the date when you want to see available Tables");
-                String Tabledate= null;
-                try {
-                    Tabledate = br.readLine();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                view.printavailableTables(Tabledate);
-            }
-            if(num==3)
-            {
-
-                view.viewReservations();
-            }
-            if(num==4){
-                view.viewReservationsAtDate();
-            }
-
-            if(num==5)
-            {
-                view.printNewWaiterAtTableAdded();
-            }
-
-            if(num<1 || num>5)
-            {
-                throw new InvalidDataException("The number you typed is invalid");
-            }
-
-            System.out.println("Do you want to continue? \n 1.Quit\n 2.Continue ");
-            int decision= scan.nextInt();
+        int decision= scan.nextInt();
+        try{
             if(decision==1)
             {
                 exit(0);
             }
             if(decision!=2)
             {
-                System.out.println("You have to type something else, preferably 1 or 2");
-                decision= scan.nextInt();
+                throw new InvalidDataException(" ");
             }
-            adminmenu();
+        }
+        catch (InvalidDataException E)
+        {
+            System.out.println("The number you typed is invalid");
+            if(role==1)
+            {
+                adminmenu(role);
+            }
+            if(role==0)
+            {
+                waitermenu(role);
+            }
+
         }
     }
 
 
-    public void waitermenu() throws InvalidDataException {
-        System.out.println("What would you like to do?  \n 1.See all Reservations \n 2.View reservations at date \n 3.See available Tables");
-        int num= scan.nextInt();
-        if(num==1) {
-             view.viewReservations();
-        }
-        if(num==2)
+    public void adminmenu(int role) throws InvalidDataException {
+        while(true)
         {
-            view.viewReservationsAtDate();
-        }
-        if(num==3)
-        {
-            System.out.println("Select the date when you want to see available Tables");
-            String Tabledate= null;
-            try {
-                Tabledate = br.readLine();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            System.out.println("What would you like to do? \n 1.Confirm new Reservation  \n 2.See available Tables \n 3.See all Reservations \n 4.View reservations at date \n 5.Add Waiter at Table"  );
+            int num= scan.nextInt();
+            try{
+                if(num==1)
+                {
+                    view.printnewReservation();
+                }
+                if(num==2)
+                {
+
+                    System.out.println("Select the date when you want to see available Tables");
+                    String Tabledate= null;
+                    try {
+                        Tabledate = br.readLine();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    view.printavailableTables(Tabledate);
+                }
+                if(num==3)
+                {
+                    view.viewReservations();
+                }
+                if(num==4){
+                    view.viewReservationsAtDate();
+                }
+
+                if(num==5)
+                {
+                    view.printNewWaiterAtTableAdded();
+                }
+
+                if(num<1 || num>5)
+                {
+                    throw new InvalidDataException("The number you typed is invalid");
+                }
             }
-            view.printavailableTables(Tabledate);
+            catch (InvalidDataException E)
+            {
+                System.out.println("The number you typed is invalid");
+                adminmenu(role);
+            }
+
+
+            continueprogram(role);
+        }
+    }
+
+
+    public void waitermenu(int role) throws InvalidDataException {
+        while(true) {
+            System.out.println("What would you like to do?  \n 1.See all Reservations \n 2.View reservations at date \n 3.See available Tables");
+            int num= scan.nextInt();
+            try{
+                if(num==1) {
+                    view.viewReservations();
+                }
+                if(num==2)
+                {
+                    view.viewReservationsAtDate();
+                }
+                if(num==3)
+                {
+                    System.out.println("Select the date when you want to see available Tables");
+                    String Tabledate= null;
+                    try {
+                        Tabledate = br.readLine();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    view.printavailableTables(Tabledate);
+
+                }
+                if(num<1 || num>3)
+                {
+                    throw new InvalidDataException("The number you typed is invalid");
+                }
+            }
+            catch (InvalidDataException E)
+            {
+                System.out.println("The number you typed is invalid");
+                waitermenu(role);
+            }
+
+            continueprogram(role);
 
         }
-        if(num<1 || num>3)
-        {
-            throw new InvalidDataException("The number you typed is invalid");
-        }
 
-        System.out.println("Do you want to continue? \n 1.Quit\n 2.Continue ");
-        int decision= scan.nextInt();
-        if(decision==1)
-        {
-            exit(0);
-        }
-        if(decision!=2)
-        {
-            System.out.println("You have to type something else, preferably 1 or 2");
-            decision= scan.nextInt();
-        }
-        waitermenu();
     }
 
 
@@ -205,18 +253,24 @@ public class UX {
 
         System.out.println("Welcome to your restaurant app that manages everything. ");
         int role= loginCreds();
-
-            if(role==1)
-            {
-                adminmenu();
+        try {
+            if (role == 1) {
+                adminmenu(role);
             }
-            if(role==0)
-            {
-                waitermenu();
+            if (role == 0) {
+                waitermenu(role);
             }
+            else if(role < 0 || role>1)
+            {
+                throw new InvalidRoleException("Not a valid role");
 
-        throw new InvalidRoleException("Not a valid role");
-
+            }
+        }
+        catch (InvalidRoleException E)
+        {
+            System.out.println("Something went wrong");
+            loginCreds();
+        }
 
     }
 
