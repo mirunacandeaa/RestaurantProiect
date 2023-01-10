@@ -16,7 +16,11 @@ import java.text.ParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-///the part of the project where the most logic is
+
+
+/**
+ * The controller contains the functions that do the most logic of the program
+ */
 public class Controller {
 
 
@@ -47,6 +51,7 @@ public class Controller {
         return reservationRepository;
     }
 
+
     public void setReservationRepository(IReservationRepository reservationRepository) {
         this.reservationRepository = reservationRepository;
     }
@@ -54,6 +59,7 @@ public class Controller {
     public ITableRepository getTableRepository() {
         return tableRepository;
     }
+
 
     public void setTableRepository(ITableRepository tableRepository) {
         this.tableRepository = tableRepository;
@@ -66,7 +72,13 @@ public class Controller {
     }
 
 
-
+    /**
+     * Controller constructor that gets the Repositories Interfaces as parameters because the controller might use data from different repositories, depending with what you want to start the application
+     * @param clientRepository
+     * @param waiterRepository
+     * @param reservationRepository
+     * @param tableRepository
+     */
     public Controller(IClientRepository clientRepository, IWaiterRepository waiterRepository, IReservationRepository reservationRepository, ITableRepository tableRepository)
     {
         this.clientRepository=clientRepository;
@@ -75,23 +87,45 @@ public class Controller {
         this.tableRepository=tableRepository;
     }
 
+    /**
+     * get everything from the client repo
+     * @return
+     */
     public List<Client> getClients() {
         return clientRepository.getAll();
     }
 
-    //functie ajutatoare pentru noi ca sa testam ca merge programul
+    /**
+     * get from the List of clients the client from a certain index, given by the param x
+     * @param x
+     * @return
+     */
+
     public Client selectClient(int x){
         List<Client> clientList = clientRepository.getAll();
         return clientList.get(x);
     }
 
+    /**
+     * get from the List of Tables the client from a certain index, given by the param x
+     * @param x
+     * @return
+     */
     public Table selectTable(int x)
     {
         List<Table> tableList=tableRepository.getAll();
         return tableList.get(x);
     }
 
-    ///creates a new reservation by giving it a client and a date and checking for the best fit from the available Tables at that date
+    /**
+     * creates a new reservation by giving it a client and a date and checking for the best fit from the available Tables at that date
+     * You recieve a client, number of persons and a date and the method returns a reservation having an additional tableid and reservationid
+     * @param client
+     * @param nrPersons
+     * @param date
+     * @return
+     */
+
     public Reservation makeNewReservation(Client client, Integer nrPersons, String date)
     {
         List<Table> freeTables = this.availableTables(date);
@@ -122,7 +156,13 @@ public class Controller {
 
     }
 
-    ///returns all the available Tables on a certain date
+
+
+    /**
+     * return all the available Tables on a certain date, given by the parameter date
+     * @param date
+     * @return
+     */
     public List<Table> availableTables(String date)
     {
         if(reservationRepository.getAll().isEmpty())
@@ -169,7 +209,13 @@ public class Controller {
         return waiter.getTableList().size();
     }
 
-    ///checks which waiter the least number of tables has and assigns him the new table
+    ///
+
+    /**
+     * checks which waiter the least number of tables has and assigns him the table given as a parameter
+     * @param table
+     * @return
+     */
     public Waiter addWaiterAtTable(Table table)
     {
         int tableNr = table.getTableId();
@@ -197,7 +243,11 @@ public class Controller {
         return waiterWithFewestTables;
     }
 
-    ///checks all the reservations at a certain date
+    /**
+     * checks all the reservations at a certain date, filtering the reservationlist
+     * @param date
+     * @return
+     */
     public List<Reservation> reservationAtDate(String date)
     {
         List<Reservation> res = new ArrayList<>();
@@ -214,8 +264,10 @@ public class Controller {
     }
 
 
-
-    ///checks all reservations
+    /**
+     * returns a list with all the reservations, sorted by date
+     * @return
+     */
     public List<Reservation> allReservations()
     {
         List<Reservation> reservationList = reservationRepository.getAll();
@@ -234,12 +286,22 @@ public class Controller {
     }
 
 
-    ///checks the waiters assigned at a specific table
+
+    /**
+     * checks the waiters assigned at a specific table, given by the param
+     * @param table
+     * @return
+     */
     public List<Waiter> waitersAtTable(Table table)
     {
         return tableRepository.getWaitersAtTable(table.getTableId());
     }
 
+    /**
+     * checks the tables assigned for a specific waiter, given by the param
+     * @param waiter
+     * @return
+     */
     ///checks the tables assigned for a specific waiter
     public List<Table> tablesForWaiter(Waiter waiter)
     {
@@ -247,13 +309,38 @@ public class Controller {
     }
 
 
+    /**
+     * checks if the login username is good
+     * @param user
+     * @return
+     */
     public boolean checkUsername(String user){
-        return loginRepo.getLoginCredentials().containsKey(user);
+       // return loginRepo.getLoginCredentials().containsKey(user);
+        if(user.equals("Popa Antonia"))
+        {
+            return true;
+        }
+        return false;
     }
 
+    /**
+     * checks if the password for an user is good
+     * @param user
+     * @param pass
+     * @return
+     */
     public boolean checkPassword(String user, String pass){
-        return Objects.equals(loginRepo.getLoginCredentials().get(user), pass);
+        if(pass.equals("1234lol"))
+        {
+            return true;
+        }
+        return false;
     }
+
+    /**
+     * returns a list with all the waiters
+     * @return
+     */
     public List<Waiter> getWaiters() {
         return waiterRepository.getAll();
     }

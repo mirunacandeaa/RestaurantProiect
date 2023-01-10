@@ -8,7 +8,9 @@ import Repository.IWaiterRepository;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * the repository takes data from the database and creates the crud functions for the waiter class
+ */
 public class JDBAWaiterRepo implements IWaiterRepository {
 
     private String url;

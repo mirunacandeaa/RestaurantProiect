@@ -20,8 +20,9 @@ import java.util.Scanner;
 
 import static java.lang.System.exit;
 
-
-///the interface - takes info from the view
+/**
+ * the interface - takes information from the view
+ */
 public class UX {
     Scanner scan = new Scanner(System.in);
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -35,7 +36,13 @@ public class UX {
     }
 
 
-
+    /**
+     * checks your login in the application, if your username and password are correct
+     * @return
+     * @throws IOException
+     * @throws InvalidPasswordException
+     * @throws InvalidNameException
+     */
     public int loginCreds() throws IOException, InvalidPasswordException, InvalidNameException {
         //admin name: Popa Antonia
         //password: 1234lol
@@ -78,7 +85,6 @@ public class UX {
         try
         {
             for (Waiter w : view.getWaiters()) {
-                System.out.println(w.getName());
                 if (w.getName().equals(Namen)) {
                     check = 1;
                 }
@@ -123,6 +129,11 @@ public class UX {
         return 2;
     }
 
+    /**
+     * checks if you want to exit the app
+     * @param role
+     * @throws InvalidDataException
+     */
     public void continueprogram(int role) throws InvalidDataException {
         System.out.println("Do you want to continue? \n 1.Quit\n 2.Continue ");
 
@@ -153,6 +164,11 @@ public class UX {
     }
 
 
+    /**
+     * the menu with the options the admin has
+     * @param role
+     * @throws InvalidDataException
+     */
     public void adminmenu(int role) throws InvalidDataException {
         while(true)
         {
@@ -204,7 +220,11 @@ public class UX {
         }
     }
 
-
+    /**
+     * the menu with the options the waiter has
+     * @param role
+     * @throws InvalidDataException
+     */
     public void waitermenu(int role) throws InvalidDataException {
         while(true) {
             System.out.println("What would you like to do?  \n 1.See all Reservations \n 2.View reservations at date \n 3.See available Tables");
@@ -247,7 +267,14 @@ public class UX {
     }
 
 
-
+    /**
+     * checks if you are an admin or an waiter so that it knows what menu to choose for you to use
+     * @throws InvalidDataException
+     * @throws IOException
+     * @throws InvalidNameException
+     * @throws InvalidPasswordException
+     * @throws InvalidRoleException
+     */
     public void chooseWhatUWantToDo() throws InvalidDataException, IOException, InvalidNameException, InvalidPasswordException, InvalidRoleException {
 
 

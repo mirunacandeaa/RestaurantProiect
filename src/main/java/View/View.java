@@ -15,7 +15,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-///the view printing the dates you take from the controller
+/**
+ * the view prints the dates you take from the controller
+ */
+
 public class View {
 
     private Controller controller;
@@ -28,8 +31,10 @@ public class View {
     Scanner scan= new Scanner(System.in);
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-
-    ///print the available tables on a certain date
+    /**
+     * print the available tables on a certain date
+     * @param date
+     */
     public void printavailableTables(String date){
         System.out.println("Available Tables");
 
@@ -44,7 +49,10 @@ public class View {
     }
 
 
-    ///print a new Reservation that contains a client, a table and a nr of persons
+    /**
+     * print a new Reservation that contains a client, a table and a nr of persons
+     * @throws InvalidDataException
+     */
     public void printnewReservation() throws InvalidDataException {
         System.out.println("Select Client: ");
         for (Client c : controller.getClients()){
@@ -82,7 +90,11 @@ public class View {
 
     }
 
-    ///print all reservations
+
+
+    /**
+     * print all reservations
+     */
     public void viewReservations(){
         List<Reservation> allRez = controller.allReservations();
         if(allRez.isEmpty())
@@ -93,7 +105,11 @@ public class View {
             }
     }
 
-    ///print all the reservation at a certain date
+
+    /**
+     * print all the reservation at a certain date
+     * @throws InvalidDataException
+     */
     public void viewReservationsAtDate() throws InvalidDataException {
         System.out.println("Enter date: ");
         String date = null;
@@ -113,7 +129,10 @@ public class View {
 
     }
 
-    ///see the new waiter added at a certain table
+    /**
+     * print the new waiter added at a certain table
+     * @throws InvalidDataException
+     */
     public void printNewWaiterAtTableAdded() throws InvalidDataException {
         System.out.println("Choose TableID:");
         for(Table t : controller.getAllTables())

@@ -1,5 +1,8 @@
 package Model;
 
+/**
+ * abstract class extended by the class client and waiter
+ */
 public abstract class Person {
 
 

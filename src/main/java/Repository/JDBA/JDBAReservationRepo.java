@@ -10,6 +10,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * the repository takes data from the database and creates the crud functions for the reservations class
+ */
 public class JDBAReservationRepo implements IReservationRepository {
     private String url;
     private List<Reservation> reservationList;
@@ -44,6 +47,12 @@ public class JDBAReservationRepo implements IReservationRepository {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * adds a certain reservation
+     * @param reservation
+     * @return
+     */
     @Override
     public boolean add(Reservation reservation) {
         for(Reservation r : reservationList)
@@ -66,6 +75,11 @@ public class JDBAReservationRepo implements IReservationRepository {
         return ok != 0;
     }
 
+    /**
+     * deletes a certain reservation
+     * @param integer
+     * @return
+     */
     @Override
     public boolean delete(Integer integer) {
         int ok = 0;
@@ -90,6 +104,12 @@ public class JDBAReservationRepo implements IReservationRepository {
         return true;
     }
 
+    /**
+     * updates a certain reservation
+     * @param integer
+     * @param reservation
+     * @return
+     */
     @Override
     public boolean update(Integer integer, Reservation reservation) {
         int ok = 0;
@@ -127,6 +147,10 @@ public class JDBAReservationRepo implements IReservationRepository {
         return null;
     }
 
+    /**
+     * gets a list with all the reservations
+     * @return
+     */
     @Override
     public List<Reservation> getAll() {
         return reservationList;

@@ -3,7 +3,9 @@ package Model;
 import java.util.Arrays;
 import java.util.List;
 
-///class table
+/**
+ * class table
+ */
 public class Table {
 
 

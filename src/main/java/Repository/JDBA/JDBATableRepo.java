@@ -8,7 +8,9 @@ import Repository.ITableRepository;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * the repository takes data from the database and creates the crud functions for the tables class
+ */
 public class JDBATableRepo implements ITableRepository {
     private String url;
     private List<Table> tableList;
@@ -143,11 +145,22 @@ public class JDBATableRepo implements ITableRepository {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * gets the waiters from a given table
+     * @param ID
+     * @return
+     */
     @Override
     public List<Waiter> getWaitersAtTable(Integer ID) {
         return tableList.stream().filter(t->t.getTableId().equals(ID)).findAny().get().getWaiterList();
     }
 
+    /**
+     * sets the waiters at a given table
+     * @param waiter
+     * @param table
+     */
     @Override
     public void setWaiterListAtTable(Waiter waiter, Table table) {
         for(Table t: tableList)

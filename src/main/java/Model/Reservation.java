@@ -4,7 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-///class reservation
+/**
+ * class with all reservations
+ */
 public class Reservation {
 
     private static int counter = 0;

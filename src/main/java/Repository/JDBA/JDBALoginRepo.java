@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * the repository takes data from the database and creates the crud functions for the logs
+ */
 public class JDBALoginRepo {
     private Map<String, String> loginCredentials;
     private String url;

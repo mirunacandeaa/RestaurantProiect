@@ -20,7 +20,11 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-///class with function that test if the functions from controller are working correctly
+///
+
+/**
+ * class with functions that test if the functions from controller are working correctly
+ */
 public class Tests {
 
 
@@ -30,6 +34,10 @@ public class Tests {
     private InMemoryClientRepo inMemoryClientRepo;
 
     Controller controller;
+
+    /**
+     * data initialising
+     */
     @Before
     public void setUp()
     {
@@ -53,7 +61,9 @@ public class Tests {
         controller=new Controller(inMemoryClientRepo, inMemoryWaiterRepo, inMemoryReservationRepo, inMemoryTableRepo);
     }
 
-
+    /**
+     * test for the method make new reservation
+     */
     @Test
     public void testMakeNewReservation() {
         Client client = new Client("Ana", "Lazar", 1, "074593456", new ArrayList<>());
@@ -67,6 +77,9 @@ public class Tests {
 
     }
 
+    /**
+     * test for the method available tables
+     */
     @Test
     public void testAvailableTables()
     {
@@ -88,8 +101,9 @@ public class Tests {
     }
 
 
-
-
+    /**
+     * test for the method add waiters at table
+     */
     @Test
     public void testaddWaiterAtTable()
     {
@@ -107,6 +121,10 @@ public class Tests {
 
 
     }
+
+    /**
+     * test for the method reservation at date
+     */
     @Test
     public void testReservationAtDate()
     {

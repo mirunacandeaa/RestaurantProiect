@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * the repository takes data from the database and creates the crud functions for the client class
+ */
 public class JDBAClientRepo implements IClientRepository {
 
     private String url;
@@ -38,6 +41,12 @@ public class JDBAClientRepo implements IClientRepository {
         }
         //this.addReservations();
     }
+
+    /**
+     * adds a new client
+     * @param client
+     * @return
+     */
     @Override
     public boolean add(Client client) {
         for(Client c : clientList)
@@ -60,6 +69,11 @@ public class JDBAClientRepo implements IClientRepository {
         return ok != 0;
     }
 
+    /**
+     * delete a certaing client
+     * @param id
+     * @return
+     */
     @Override
     public boolean delete(Integer id) {
         int ok = 0;
@@ -84,6 +98,12 @@ public class JDBAClientRepo implements IClientRepository {
         return true;
     }
 
+    /**
+     * update a certain client
+     * @param id
+     * @param client
+     * @return
+     */
     @Override
     public boolean update(Integer id, Client client) {
         int ok = 0;
@@ -116,6 +136,11 @@ public class JDBAClientRepo implements IClientRepository {
         return true;
     }
 
+    /**
+     * find a certain client
+     * @param integer
+     * @return
+     */
     @Override
     public Client findbyId(Integer integer) {
         for(Client c : clientList)
@@ -137,6 +162,11 @@ public class JDBAClientRepo implements IClientRepository {
             }
         }
     }
+
+    /**
+     * returns all the clients
+     * @return
+     */
     @Override
     public List<Client> getAll() {
         return clientList;

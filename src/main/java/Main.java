@@ -24,11 +24,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//initialising the program and apel the UX
+
+/**
+ * calls the method that starts the app
+ */
 public class Main {
     public static void main(String[] args) throws InvalidNameException, InvalidDataException, InvalidPasswordException, InvalidRoleException, IOException {
         Application app = new Application();
-        app.runWithDatabase();
+        app.runInMemory();
 
 
     }

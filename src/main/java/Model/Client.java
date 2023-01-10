@@ -2,6 +2,9 @@ package Model;
 
 import java.util.List;
 
+/**
+ * class that contains a client
+ */
 public class Client extends Person{
 
 
@@ -9,6 +12,14 @@ public class Client extends Person{
     String phone;
     List<Reservation> reservationList;
 
+    /**
+     * constructor for a client, that has all the following parameters
+     * @param firstName
+     * @param lastName
+     * @param clientID
+     * @param phone
+     * @param reservationList
+     */
     public Client(String firstName, String lastName, Integer clientID, String phone, List<Reservation> reservationList) {
         super(firstName, lastName);
         this.clientID = clientID;
