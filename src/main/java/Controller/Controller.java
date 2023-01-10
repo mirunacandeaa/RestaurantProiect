@@ -8,6 +8,7 @@ import Repository.IClientRepository;
 import Repository.IReservationRepository;
 import Repository.ITableRepository;
 import Repository.IWaiterRepository;
+import Repository.JDBA.JDBALoginRepo;
 import View.View;
 
 
@@ -18,6 +19,8 @@ import java.util.stream.Collectors;
 ///the part of the project where the most logic is
 public class Controller {
 
+
+    private JDBALoginRepo loginRepo = new JDBALoginRepo();
     private IClientRepository clientRepository;
     private IWaiterRepository waiterRepository;
     private IReservationRepository reservationRepository;
@@ -140,7 +143,7 @@ public class Controller {
             ok=1;
             for(Table a: notavTables)
             {
-                if (t.equals(a)) {
+                if (t.getTableId().equals(a.getTableId())) {
                     ok = 0;
                     break;
                 }
@@ -244,6 +247,13 @@ public class Controller {
     }
 
 
+    public boolean checkUsername(String user){
+        return loginRepo.getLoginCredentials().containsKey(user);
+    }
+
+    public boolean checkPassword(String user, String pass){
+        return Objects.equals(loginRepo.getLoginCredentials().get(user), pass);
+    }
     public List<Waiter> getWaiters() {
         return waiterRepository.getAll();
     }

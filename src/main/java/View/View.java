@@ -73,7 +73,7 @@ public class View {
             System.out.println("Reservation ID: " + newRez.getReservationID());
             System.out.println("Client: " + newRez.getClient());
             System.out.println("Reservation date: " + newRez.getDate());
-            System.out.println("Table number" + newRez.getTable());
+            System.out.println("Table number" + newRez.getTable().getTableId());
         }
         catch (InvalidTablesException E){
             System.out.println("No available tables for that many persons at that date. Try again.");
@@ -96,10 +96,13 @@ public class View {
     ///print all the reservation at a certain date
     public void viewReservationsAtDate() throws InvalidDataException {
         System.out.println("Enter date: ");
+        String date = null;
         try {
-            String date = br.readLine();
-
-            List<Reservation> res = controller.reservationAtDate(date);
+            date = br.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        List<Reservation> res = controller.reservationAtDate(date);
             if(res.isEmpty())
                 System.out.println("No reservations at " + date);
             else {
@@ -107,12 +110,7 @@ public class View {
                     System.out.println(r.toString());
                 }
             }
-            throw new InvalidDataException("The date you typed is invalid");
 
-        } catch (InvalidDataException | IOException e) {
-            System.out.println("The date you typed is invalid");
-            viewReservationsAtDate();
-        }
     }
 
     ///see the new waiter added at a certain table
@@ -120,11 +118,7 @@ public class View {
         System.out.println("Choose TableID:");
         for(Table t : controller.getAllTables())
             System.out.println(t);
-
-
-        try
-        {
-            int nr=scan.nextInt();
+           int nr=scan.nextInt();
             nr=nr-1;
             Table t=controller.selectTable(nr);
             Waiter waiter = controller.addWaiterAtTable(t);
@@ -135,15 +129,7 @@ public class View {
             else {
                 System.out.println("Waiter added:");
                 System.out.println(waiter.toString());
-            }
-
-            throw new InvalidDataException("d");}
-        catch(InvalidDataException e){
-            System.out.println("The number you typed is invalid");
-            printNewWaiterAtTableAdded();
-        }
-
-
+    }
     }
 
 
