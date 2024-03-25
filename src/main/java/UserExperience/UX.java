@@ -44,91 +44,91 @@ public class UX {
      * @throws InvalidPasswordException
      * @throws InvalidNameException
      */
-    public int loginCreds() throws IOException, InvalidPasswordException, InvalidNameException {
-        //admin name: Popa Antonia
-        //password: 1234lol
-
-        int check = 0;
-
-        System.out.println("Please log in:");
-        System.out.println("Name:");
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String Namen = br.readLine();
-        int WrongPass=0;
-        while(true) {
-            try {
-                if (view.checkUser(Namen)) {
-                    BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
-                    System.out.println("Password:");
-                    String PassWord = br2.readLine();
-                    if (view.checkPass(Namen,PassWord))
-                        return 1;
-                    else {
-                        throw new InvalidPasswordException(" ");
-                    }
-                }
-                else{
-                    break;
-                }
-            } catch (InvalidPasswordException e) {
-                WrongPass++;
-                System.out.println("The password for this user is invalid");
-                if (WrongPass > 2) {
-                    System.out.println("You wrote the wrong password too many times. Loser");
-                    exit(0);
-                }
-            }
-        }
-
-
-
-        try
-        {
-            for (Waiter w : view.getWaiters()) {
-                if (w.getName().equals(Namen)) {
-                    check = 1;
-                }
-            }
-
-            if (check != 1) {
-                throw new InvalidNameException("The user does not exist");
-            }
-        }
-        catch (InvalidNameException E)
-        {
-            System.out.println("The user does not exist");
-            loginCreds();
-        }
-
-
-        for (Waiter w : view.getWaiters()) {
-
-            if (w.getName().equals(Namen)) {
-                System.out.println("Password:");
-                while (true) {
-                    try {
-                        int PassWord = logscan.nextInt();
-                        if (PassWord != w.getWaiterID()) {
-                            throw new InvalidPasswordException("The password for this user is invalid");
-                        } else {
-                            return 0;
-                        }
-                    } catch (InvalidPasswordException E) {
-                        WrongPass++;
-                        System.out.println("The password for this user is invalid");
-                        if (WrongPass > 2) {
-                            System.out.println("You wrote the wrong password too many times. Loser");
-                            exit(0);
-                        }
-                    }
-                }
-
-            }
-        }
-
-        return 2;
-    }
+//    public int loginCreds() throws IOException, InvalidPasswordException, InvalidNameException {
+//        //admin name: Popa Antonia
+//        //password: 1234lol
+//
+//        int check = 0;
+//
+//        System.out.println("Please log in:");
+//        System.out.println("Name:");
+//
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        String Namen = br.readLine();
+//        int WrongPass=0;
+//        while(true) {
+//            try {
+//                if (view.checkUser(Namen)) {
+//                    BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
+//                    System.out.println("Password:");
+//                    String PassWord = br2.readLine();
+//                    if (view.checkPass(Namen,PassWord))
+//                        return 1;
+//                    else {
+//                        throw new InvalidPasswordException(" ");
+//                    }
+//                }
+//                else{
+//                    break;
+//                }
+//            } catch (InvalidPasswordException e) {
+//                WrongPass++;
+//                System.out.println("The password for this user is invalid");
+//                if (WrongPass > 2) {
+//                    System.out.println("You wrote the wrong password too many times. Loser");
+//                    exit(0);
+//                }
+//            }
+//        }
+//
+//
+//
+//        try
+//        {
+//            for (Waiter w : view.getWaiters()) {
+//                if (w.getName().equals(Namen)) {
+//                    check = 1;
+//                }
+//            }
+//
+//            if (check != 1) {
+//                throw new InvalidNameException("The user does not exist");
+//            }
+//        }
+//        catch (InvalidNameException E)
+//        {
+//            System.out.println("The user does not exist");
+//            loginCreds();
+//        }
+//
+//
+//        for (Waiter w : view.getWaiters()) {
+//
+//            if (w.getName().equals(Namen)) {
+//                System.out.println("Password:");
+//                while (true) {
+//                    try {
+//                        int PassWord = logscan.nextInt();
+//                        if (PassWord != w.getWaiterID()) {
+//                            throw new InvalidPasswordException("The password for this user is invalid");
+//                        } else {
+//                            return 0;
+//                        }
+//                    } catch (InvalidPasswordException E) {
+//                        WrongPass++;
+//                        System.out.println("The password for this user is invalid");
+//                        if (WrongPass > 2) {
+//                            System.out.println("You wrote the wrong password too many times. Loser");
+//                            exit(0);
+//                        }
+//                    }
+//                }
+//
+//            }
+//        }
+//
+//        return 2;
+//    }
 
     /**
      * checks if you want to exit the app
@@ -285,7 +285,7 @@ public class UX {
 
 
         System.out.println("Welcome to your restaurant app that manages everything. ");
-        int role= loginCreds();
+        int role= 1;
         try {
             if (role == 1) {
                 adminmenu(role);
@@ -302,7 +302,7 @@ public class UX {
         catch (InvalidRoleException E)
         {
             System.out.println("Something went wrong");
-            loginCreds();
+
         }
 
     }

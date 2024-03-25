@@ -8,7 +8,7 @@ import Repository.IClientRepository;
 import Repository.IReservationRepository;
 import Repository.ITableRepository;
 import Repository.IWaiterRepository;
-import Repository.JDBA.JDBALoginRepo;
+//import Repository.JDBA.JDBALoginRepo;
 import View.View;
 
 
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class Controller {
 
 
-    private JDBALoginRepo loginRepo = new JDBALoginRepo();
+  //  private JDBALoginRepo loginRepo = new JDBALoginRepo();
     private IClientRepository clientRepository;
     private IWaiterRepository waiterRepository;
     private IReservationRepository reservationRepository;
@@ -315,10 +315,10 @@ public class Controller {
      * @param user
      * @return
      */
-    public boolean checkUsername(String user){
-        return loginRepo.getLoginCredentials().containsKey(user);
-
-    }
+//    public boolean checkUsername(String user){
+//        return loginRepo.getLoginCredentials().containsKey(user);
+//
+//    }
 
     /**
      * checks if the password for an user is good
@@ -326,9 +326,9 @@ public class Controller {
      * @param pass
      * @return
      */
-    public boolean checkPassword(String user, String pass){
-        return Objects.equals(loginRepo.getLoginCredentials().get(user), pass);
-    }
+//    public boolean checkPassword(String user, String pass){
+//        return Objects.equals(loginRepo.getLoginCredentials().get(user), pass);
+//    }
 
     /**
      * returns a list with all the waiters

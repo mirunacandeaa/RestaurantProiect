@@ -38,20 +38,21 @@ public class Application {
      *
      *
      *
+     *
      */
-    public void runWithDatabase() throws InvalidNameException, InvalidDataException, InvalidPasswordException, InvalidRoleException, IOException {
-        JDBATableRepo jdbaTableRepo = new JDBATableRepo();
-        JDBAWaiterRepo jdbaWaiterRepo = new JDBAWaiterRepo();
-        JDBAClientRepo jdbaClientRepo = new JDBAClientRepo();
-        JDBAReservationRepo jdbaReservationRepo = new JDBAReservationRepo();
-        jdbaTableRepo.actualiseWaitersAtTables();
-        jdbaWaiterRepo.actualiseWaitersAtTables();
-        jdbaClientRepo.addReservations();
-        Controller controller = new Controller(jdbaClientRepo,jdbaWaiterRepo,jdbaReservationRepo,jdbaTableRepo);
-        View view = new View(controller);
-        UX ux = new UX(view);
-        ux.chooseWhatUWantToDo();
-    }
+//    public void runWithDatabase() throws InvalidNameException, InvalidDataException, InvalidPasswordException, InvalidRoleException, IOException {
+//        JDBATableRepo jdbaTableRepo = new JDBATableRepo();
+//        JDBAWaiterRepo jdbaWaiterRepo = new JDBAWaiterRepo();
+//        JDBAClientRepo jdbaClientRepo = new JDBAClientRepo();
+//        JDBAReservationRepo jdbaReservationRepo = new JDBAReservationRepo();
+//        jdbaTableRepo.actualiseWaitersAtTables();
+//        jdbaWaiterRepo.actualiseWaitersAtTables();
+//        jdbaClientRepo.addReservations();
+//        Controller controller = new Controller(jdbaClientRepo,jdbaWaiterRepo,jdbaReservationRepo,jdbaTableRepo);
+//        View view = new View(controller);
+//        UX ux = new UX(view);
+//        ux.chooseWhatUWantToDo();
+//    }
 
     /**
      *
